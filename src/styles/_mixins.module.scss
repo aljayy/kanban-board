@@ -1,0 +1,44 @@
+@import "./variables.module";
+
+@mixin xlarge-heading {
+  font-family: $font;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 3rem;
+}
+
+@mixin large-heading {
+  font-family: $font;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.3rem;
+}
+
+@mixin medium-heading {
+  font-family: $font;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.9rem;
+}
+
+@mixin small-heading {
+  font-family: $font;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.24rem;
+  line-height: 1.5rem;
+}
+
+@mixin large-body {
+  font-family: $font;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 2.3rem;
+}
+
+@mixin medium-body {
+  font-family: $font;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+}
