@@ -24,6 +24,7 @@ header {
 
     .path {
       margin-top: 0.5rem;
+      transition: transform 0.5s ease-in-out;
     }
   }
 
@@ -49,4 +50,8 @@ header {
       opacity: 0.25;
     }
   }
+}
+
+.rotate {
+  transform: rotate(180deg);
 }
