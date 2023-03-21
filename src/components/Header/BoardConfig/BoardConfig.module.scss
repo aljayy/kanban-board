@@ -1,0 +1,53 @@
+@use "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.logo-container {
+  padding: 0 2.4rem;
+  height: 100%;
+  width: 202px;
+  border-right: 1px solid $lines-light;
+  display: flex;
+  align-items: center;
+}
+
+.board-details {
+  padding: 1.6rem 2.4rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  h2 {
+    color: $black;
+    font-family: $font;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.5rem;
+  }
+
+  .board-configuration {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 2.4rem;
+
+    button {
+      // Remove default button styling
+      border: none;
+      outline: none;
+      font: inherit;
+      background: transparent;
+      //
+      background-color: $main-purple;
+      border-radius: 2.4rem;
+      height: 100%;
+      width: 16.4rem;
+
+      p {
+        @include mixins.medium-heading;
+        color: $white;
+      }
+    }
+  }
+}
