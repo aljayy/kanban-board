@@ -18,7 +18,7 @@ function Header() {
     };
   }, []);
 
-  const deviceClasses = isMobile ? classes["mobile-header"] : classes.header;
+  const deviceClasses = isMobile ? classes["mobile-configs"] : classes.configs;
   const configs = isMobile ? <MobileBoardConfig /> : <BoardConfig />;
 
   return <header className={deviceClasses}>{configs}</header>;

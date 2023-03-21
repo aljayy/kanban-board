@@ -1,0 +1,17 @@
+@import "../../styles/variables.module";
+
+header {
+  background-color: $white;
+  display: flex;
+  width: 100%;
+}
+
+.mobile-configs {
+  justify-content: space-between;
+  height: 6.4rem;
+  padding: 1.6rem;
+}
+
+.configs {
+  height: 8rem;
+}
