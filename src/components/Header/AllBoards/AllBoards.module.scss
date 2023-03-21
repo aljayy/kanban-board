@@ -1,0 +1,51 @@
+@use "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+h3 {
+  @include mixins.small-heading;
+  text-transform: uppercase;
+  color: $medium-grey;
+  margin: 0 0 1.9rem 2.4rem;
+}
+
+li {
+  @include mixins.medium-heading;
+  list-style: none;
+  height: 4.8rem;
+  border-top-right-radius: 10rem;
+  border-bottom-right-radius: 10rem;
+
+  button {
+    // Remove default button styling
+    border: none;
+    outline: none;
+    font: inherit;
+    background: transparent;
+    //
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    height: 100%;
+    width: 100%;
+    margin-left: 2.4rem;
+  }
+}
+
+.active-board {
+  background-color: $main-purple;
+  button {
+    color: $white;
+  }
+}
+
+.non-active-board {
+  button {
+    color: $medium-grey;
+  }
+}
+
+.new-board {
+  button {
+    color: $main-purple;
+  }
+}
