@@ -1,6 +1,7 @@
 import React from "react";
 import data from "../../../data.json";
 import AllBoards from "../AllBoards/AllBoards";
+import ThemeToggler from "../ThemeToggler/ThemeToggler";
 import classes from "./MobileMenuModal.module.scss";
 
 function MobileModal({ viewMenu }) {
@@ -12,6 +13,7 @@ function MobileModal({ viewMenu }) {
     <div className={classes.overlay}>
       <menu>
         <AllBoards localData={localData} />
+        <ThemeToggler />
       </menu>
     </div>
   );
