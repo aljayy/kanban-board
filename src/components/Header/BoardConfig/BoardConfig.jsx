@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import Sidebar from "../../Sidebar/Sidebar";
 import classes from "./BoardConfig.module.scss";
 import logolight from "../../../assets/logo-light.svg";
 import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
 
-function BoardConfig({ showSidebar }) {
+function BoardConfig() {
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  function toggleSidebar() {
+    setShowSidebar((prev) => !prev);
+  }
+
   const paddingTransition = showSidebar ? classes["add-padding"] : "";
 
   return (
@@ -22,6 +29,7 @@ function BoardConfig({ showSidebar }) {
           </div>
         </div>
       </div>
+      <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
     </>
   );
 }
