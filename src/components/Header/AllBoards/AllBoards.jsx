@@ -1,10 +1,12 @@
 import React from "react";
+import data from "../../../data.json";
 import inactiveBoardIcon from "../../../assets/icon-board.svg";
 import activeBoardIcon from "../../../assets/icon-active-board.svg";
 import newBoardIcon from "../../../assets/icon-new-board.svg";
 import classes from "./AllBoards.module.scss";
 
-function AllBoards({ localData }) {
+function AllBoards() {
+  const localData = data.boards;
   return (
     <>
       <h3 className={classes}>{`All Boards (${localData.length})`}</h3>
@@ -26,7 +28,7 @@ function AllBoards({ localData }) {
       <li className={classes["new-board"]}>
         <button>
           <img src={newBoardIcon} alt="Board Icon" />
-          <p>+ Create a new board</p>
+          <p>+ Create New Board</p>
         </button>
       </li>
     </>
