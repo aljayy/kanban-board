@@ -10,11 +10,13 @@
   justify-content: space-between;
   position: absolute;
   top: 0;
-  left: 0;
+  left: -26rem;
   width: 26rem;
+  transition: left 0.5s ease-in-out;
+  z-index: 1;
 
   .sb-logo-container {
-    margin: 3.3rem 0 5.4rem 2.6rem;
+    margin: 3.3rem 0 5rem 2.6rem;
   }
 
   .sb-all-boards {
@@ -49,4 +51,8 @@
       color: $medium-grey;
     }
   }
+}
+
+.show {
+  left: 0;
 }
