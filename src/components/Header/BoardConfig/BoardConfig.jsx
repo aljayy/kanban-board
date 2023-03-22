@@ -3,13 +3,15 @@ import classes from "./BoardConfig.module.scss";
 import logolight from "../../../assets/logo-light.svg";
 import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
 
-function TabletAndDesktopHeader() {
+function BoardConfig({ showSidebar }) {
+  const paddingTransition = showSidebar ? classes["add-padding"] : "";
+
   return (
     <>
       <div className={classes["logo-container"]}>
         <img src={logolight} alt="Light Themed Logo" />
       </div>
-      <div className={classes["board-details"]}>
+      <div className={`${classes["board-details"]} ${paddingTransition}`}>
         <h2>Platform Launch</h2>
         <div className={classes["board-configuration"]}>
           <button>
@@ -24,4 +26,4 @@ function TabletAndDesktopHeader() {
   );
 }
 
-export default TabletAndDesktopHeader;
+export default BoardConfig;
