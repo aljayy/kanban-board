@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import classes from "./BoardConfig.module.scss";
-import logolight from "../../../assets/logo-light.svg";
 import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
 import Sidebar from "../../Sidebar/Sidebar";
 import ThemeCtx from "../../../context/themectx";
@@ -17,8 +16,10 @@ function BoardConfig() {
 
   return (
     <>
-      <div className={classes["logo-container"]}>
-        <img src={logolight} alt="Light Themed Logo" />
+      <div
+        className={`${classes["logo-container"]} ${classes["logo-" + theme]}`}
+      >
+        <div className={classes.logo} />
       </div>
       <div className={`${classes["board-details"]} ${paddingTransition}`}>
         <h2 className={classes[theme]}>Platform Launch</h2>

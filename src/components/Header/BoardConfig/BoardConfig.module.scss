@@ -4,10 +4,19 @@
 .logo-container {
   padding: 0 2.4rem;
   height: 100%;
-  width: 202px;
-  border-right: 1px solid $lines-light;
+  width: 20.2rem;
+  border-right-style: solid;
+  border-right-width: 1px;
   display: flex;
   align-items: center;
+  transition: border-right-color 0.5s ease-in-out;
+
+  .logo {
+    background-image: url("../../../assets/logo-light.svg");
+    transition: background-image 0.5s ease-in-out;
+    height: 2.6rem;
+    width: 15.3rem;
+  }
 }
 
 .board-details {
@@ -63,4 +72,16 @@
 
 .dark {
   color: $white;
+}
+
+.logo-light {
+  border-right-color: $lines-light;
+}
+
+.logo-dark {
+  border-right-color: $lines-dark;
+
+  .logo {
+    background-image: url("../../../assets/logo-dark.svg");
+  }
 }
