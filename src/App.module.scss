@@ -1,0 +1,25 @@
+@import "./styles/variables.module";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-size: 62.5%;
+}
+
+.light {
+  background-color: $light-mode-bg;
+  min-height: 100vh;
+  min-width: 100vw;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.dark {
+  background-color: $dark-mode-bg;
+  min-height: 100vh;
+  min-width: 100vw;
+  transition: background-color 0.5s ease-in-out;
+}
