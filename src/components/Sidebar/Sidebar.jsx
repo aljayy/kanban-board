@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./Sidebar.module.scss";
 import lightlogo from "../../assets/logo-light.svg";
 import hide from "../../assets/icon-hide-sidebar.svg";
 import AllBoards from "../Header/AllBoards/AllBoards";
 import ThemeToggler from "../Header/ThemeToggler/ThemeToggler";
 import ShowSidebar from "./ShowSidebar/ShowSidebar";
+import ThemeCtx from "../../context/themectx";
 
 function Sidebar({ showSidebar, toggleSidebar }) {
   const positionTransition = showSidebar ? classes.show : "";
+  const { theme } = useContext(ThemeCtx);
 
   return (
     <>
-      <div className={`${classes.sidebar} ${positionTransition}`}>
+      <div
+        className={`${classes.sidebar} ${positionTransition} ${classes[theme]}`}
+      >
         <div>
           <div className={classes["sb-logo-container"]}>
             <img src={lightlogo} alt="Kanban Logo" />

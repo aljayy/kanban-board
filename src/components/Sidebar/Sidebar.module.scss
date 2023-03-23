@@ -2,8 +2,10 @@
 @import "../../styles/variables.module";
 
 .sidebar {
-  background-color: $white;
-  border-right: 1px solid $lines-light;
+  // background-color: $white;
+  // border-right: 1px solid $lines-light;
+  border-right-style: solid;
+  border-right-width: 1px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -12,7 +14,8 @@
   top: 0;
   left: -26rem;
   width: 26rem;
-  transition: left 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out,
+    border-right-color 0.5s ease-in-out, left 0.5s ease-in-out;
   z-index: 1;
 
   .sb-logo-container {
@@ -55,4 +58,14 @@
 
 .show {
   left: 0;
+}
+
+.light {
+  background-color: $white;
+  border-right-color: $lines-light;
+}
+
+.dark {
+  background-color: $dark-grey;
+  border-right-color: $lines-dark;
 }
