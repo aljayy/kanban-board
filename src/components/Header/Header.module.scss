@@ -2,9 +2,11 @@
 
 header {
   background-color: $white;
-  border-bottom: 1px solid $lines-light;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
   display: flex;
   width: 100%;
+  transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out;
 }
 
 .mobile-configs {
@@ -15,4 +17,14 @@ header {
 
 .configs {
   height: 8.1rem;
+}
+
+.light {
+  background-color: $white;
+  border-bottom-color: $lines-light;
+}
+
+.dark {
+  background-color: $dark-grey;
+  border-bottom-color: $lines-dark;
 }
