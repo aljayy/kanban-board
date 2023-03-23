@@ -5,15 +5,16 @@ import lightIcon from "../../../assets/icon-light-theme.svg";
 import ThemeCtx from "../../../context/themectx";
 
 function ThemeToggler() {
-  const { isLight, toggleTheme } = useContext(ThemeCtx);
+  const { theme, toggleTheme } = useContext(ThemeCtx);
 
-  const toggleTransition = isLight ? "" : classes.transform;
+  const transition =
+    theme === "light" ? classes["transform-left"] : classes["transform-right"];
 
   return (
-    <div className={classes["theme-toggler"]}>
+    <div className={`${classes["theme-toggler"]} ${classes[theme]}`}>
       <img src={lightIcon} alt="Light Theme Icon" />
       <button onClick={toggleTheme}>
-        <div className={toggleTransition} />
+        <div className={transition} />
       </button>
       <img src={darkIcon} alt="Dark Theme Icon" />
     </div>
