@@ -13,7 +13,7 @@ function MobileModal({ viewMenu, toggleMenu }) {
       className={`${classes.overlay} ${opacityTransition}`}
       onClick={toggleMenu}
     >
-      <menu>
+      <menu onClick={(e) => e.stopPropagation()}>
         <div className={classes["mobile-all-boards"]}>
           <AllBoards />
         </div>
