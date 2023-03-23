@@ -12,6 +12,7 @@
   .mobile-board-title {
     @include mixins.large-heading;
     margin-right: 0.8rem;
+    transition: color 0.5s ease-in-out;
   }
 
   .path {
@@ -45,4 +46,12 @@
 
 .rotate {
   transform: rotate(180deg);
+}
+
+.light {
+  color: $black;
+}
+
+.dark {
+  color: $white;
 }
