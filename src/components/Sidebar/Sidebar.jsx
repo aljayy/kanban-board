@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import classes from "./Sidebar.module.scss";
+import darklogo from "../../assets/logo-dark.svg";
 import lightlogo from "../../assets/logo-light.svg";
 import hide from "../../assets/icon-hide-sidebar.svg";
 import AllBoards from "../Header/AllBoards/AllBoards";
@@ -17,9 +18,7 @@ function Sidebar({ showSidebar, toggleSidebar }) {
         className={`${classes.sidebar} ${positionTransition} ${classes[theme]}`}
       >
         <div>
-          <div className={classes["sb-logo-container"]}>
-            <img src={lightlogo} alt="Kanban Logo" />
-          </div>
+          <div className={`${classes["sb-logo-container"]} `} />
           <div className={classes["sb-all-boards"]}>
             <AllBoards />
           </div>

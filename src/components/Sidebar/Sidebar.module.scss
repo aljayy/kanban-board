@@ -2,8 +2,6 @@
 @import "../../styles/variables.module";
 
 .sidebar {
-  // background-color: $white;
-  // border-right: 1px solid $lines-light;
   border-right-style: solid;
   border-right-width: 1px;
   height: 100%;
@@ -19,7 +17,13 @@
   z-index: 1;
 
   .sb-logo-container {
+    background-image: url("../../assets/logo-light.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 2.6rem;
     margin: 3.3rem 0 5rem 2.6rem;
+    width: 15.3rem;
+    transition: background-image 0.5s ease-in-out;
   }
 
   .sb-all-boards {
@@ -68,4 +72,8 @@
 .dark {
   background-color: $dark-grey;
   border-right-color: $lines-dark;
+
+  .sb-logo-container {
+    background-image: url("../../assets/logo-dark.svg");
+  }
 }
