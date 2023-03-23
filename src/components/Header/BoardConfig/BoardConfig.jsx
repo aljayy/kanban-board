@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import Sidebar from "../../Sidebar/Sidebar";
+import React, { useContext, useState } from "react";
 import classes from "./BoardConfig.module.scss";
 import logolight from "../../../assets/logo-light.svg";
 import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
+import Sidebar from "../../Sidebar/Sidebar";
+import ThemeCtx from "../../../context/themectx";
 
 function BoardConfig() {
   const [showSidebar, setShowSidebar] = useState(false);
+  const { theme } = useContext(ThemeCtx);
 
   function toggleSidebar() {
     setShowSidebar((prev) => !prev);
@@ -19,7 +21,7 @@ function BoardConfig() {
         <img src={logolight} alt="Light Themed Logo" />
       </div>
       <div className={`${classes["board-details"]} ${paddingTransition}`}>
-        <h2>Platform Launch</h2>
+        <h2 className={classes[theme]}>Platform Launch</h2>
         <div className={classes["board-configuration"]}>
           <button>
             <p>+ Add New Task</p>
