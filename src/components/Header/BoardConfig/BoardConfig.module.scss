@@ -85,3 +85,22 @@
     background-image: url("../../../assets/logo-dark.svg");
   }
 }
+
+@media (min-width: 1440px) {
+  .logo-container {
+    width: 21.1rem;
+    padding: 3.5rem 3.3rem 3.6rem 2.4rem;
+  }
+
+  .board-details {
+    padding: 2rem 3.3rem 2.8rem 3.2rem;
+
+    h2 {
+      @include mixins.xlarge-heading;
+    }
+  }
+
+  .add-padding {
+    padding-left: 11.3Zx rem;
+  }
+}
