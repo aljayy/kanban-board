@@ -1,0 +1,32 @@
+@use "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.empty-board-wrapper {
+  margin: 21.1rem 1.6rem 0 1.6rem;
+
+  h2 {
+    @include mixins.large-heading;
+    color: $medium-grey;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  button {
+    // Remove default button styling
+    border: none;
+    outline: none;
+    font: inherit;
+    background: transparent;
+    //
+    background-color: $main-purple;
+    border-radius: 2.4rem;
+    height: 4.8rem;
+    margin: 0 8.5rem 0.1rem 8.4rem;
+    width: 17.4rem;
+
+    p {
+      @include mixins.medium-heading;
+      color: $white;
+    }
+  }
+}
