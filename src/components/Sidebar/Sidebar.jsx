@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import classes from "./Sidebar.module.scss";
-import darklogo from "../../assets/logo-dark.svg";
-import lightlogo from "../../assets/logo-light.svg";
 import hide from "../../assets/icon-hide-sidebar.svg";
 import AllBoards from "../Header/AllBoards/AllBoards";
 import ThemeToggler from "../Header/ThemeToggler/ThemeToggler";
