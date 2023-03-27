@@ -1,7 +1,6 @@
 @import "../../styles/variables.module";
 
 header {
-  background-color: $white;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   display: flex;
@@ -27,4 +26,10 @@ header {
 .dark {
   background-color: $dark-grey;
   border-bottom-color: $lines-dark;
+}
+
+@media (min-width: 1440px) {
+  .configs {
+    height: 9.7rem;
+  }
 }
