@@ -1,16 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import classes from "./BoardConfig.module.scss";
 import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
 import Sidebar from "../../Sidebar/Sidebar";
+import BoardCtx from "../../../context/boardctx";
 import ThemeCtx from "../../../context/themectx";
 
 function BoardConfig() {
-  const [showSidebar, setShowSidebar] = useState(false);
   const { theme } = useContext(ThemeCtx);
-
-  function toggleSidebar() {
-    setShowSidebar((prev) => !prev);
-  }
+  const { showSidebar } = useContext(BoardCtx);
 
   const paddingTransition = showSidebar ? classes["add-padding"] : "";
 
@@ -32,7 +29,7 @@ function BoardConfig() {
           </div>
         </div>
       </div>
-      <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
+      <Sidebar />
     </>
   );
 }

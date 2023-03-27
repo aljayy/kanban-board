@@ -2,13 +2,15 @@ import React, { useContext } from "react";
 import classes from "./Sidebar.module.scss";
 import hide from "../../assets/icon-hide-sidebar.svg";
 import AllBoards from "../Header/AllBoards/AllBoards";
-import ThemeToggler from "../Header/ThemeToggler/ThemeToggler";
+import BoardCtx from "../../context/boardctx";
 import ShowSidebar from "./ShowSidebar/ShowSidebar";
+import ThemeToggler from "../Header/ThemeToggler/ThemeToggler";
 import ThemeCtx from "../../context/themectx";
 
-function Sidebar({ showSidebar, toggleSidebar }) {
-  const positionTransition = showSidebar ? classes.show : "";
+function Sidebar() {
+  const { showSidebar, toggleSidebar } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
+  const positionTransition = showSidebar ? classes.show : "";
 
   return (
     <>
@@ -33,7 +35,7 @@ function Sidebar({ showSidebar, toggleSidebar }) {
           </li>
         </div>
       </div>
-      <ShowSidebar toggleSidebar={toggleSidebar} />
+      <ShowSidebar />
     </>
   );
 }
