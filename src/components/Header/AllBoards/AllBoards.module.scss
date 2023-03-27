@@ -28,6 +28,10 @@ li {
     height: 100%;
     width: 100%;
     margin-left: 2.4rem;
+
+    p {
+      margin-bottom: 0.1rem;
+    }
   }
 }
 
@@ -47,5 +51,16 @@ li {
 .new-board {
   button {
     color: $main-purple;
+  }
+}
+
+@media (min-width: 1440px) {
+  h3 {
+    margin-left: 3.2rem;
+  }
+
+  li button {
+    gap: 1.6rem;
+    margin-left: 3.2rem;
   }
 }
