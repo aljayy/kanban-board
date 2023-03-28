@@ -26,6 +26,10 @@
     margin: 0 auto 0.1rem auto;
     width: 17.4rem;
 
+    &:hover {
+      background-color: $main-purple-hover;
+    }
+
     p {
       @include mixins.medium-heading;
       color: $white;
