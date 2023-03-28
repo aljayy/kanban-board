@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import classes from "./EditBoard.module.scss";
 import ActionInput from "../../UI/ActionInput";
+import BoardCtx from "../../../context/boardctx";
 import ActionTagInput from "../../UI/ActionTagInput";
 import ActionTitle from "../../UI/ActionTitle";
 import SmallButtonPrimary from "../../UI/Buttons/SmallButtonPrimary";
-import classes from "./EditBoard.module.scss";
 
 function EditBoard() {
+  const { showEditBoard, toggleEditBoardModal } = useContext(BoardCtx);
+
+  const transition = showEditBoard ? "" : classes["hide-edit-board"];
+
   // LOCAL DATA
   const title = "Edit Board";
 
@@ -26,8 +31,14 @@ function EditBoard() {
   //
 
   return (
-    <div className={classes.overlay}>
-      <div className={classes["edit-board-wrapper"]}>
+    <div
+      className={`${classes.overlay} ${transition}`}
+      onClick={toggleEditBoardModal}
+    >
+      <div
+        className={classes["edit-board-wrapper"]}
+        onClick={(e) => e.stopPropagation()}
+      >
         <ActionTitle title={title} />
         <div className={classes["board-name-wrapper"]}>
           <ActionInput input={inputData} />

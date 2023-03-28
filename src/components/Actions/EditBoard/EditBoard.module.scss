@@ -9,6 +9,7 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 0.5s ease;
+  opacity: 1;
   display: flex;
   align-items: center;
 
@@ -34,4 +35,9 @@
       margin-top: 2.4rem;
     }
   }
+}
+
+.hide-edit-board {
+  pointer-events: none;
+  opacity: 0;
 }
