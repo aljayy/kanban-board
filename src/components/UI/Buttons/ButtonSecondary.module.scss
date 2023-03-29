@@ -1,0 +1,22 @@
+@use "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.button-secondary {
+  // Remove default button styling
+  border: none;
+  outline: none;
+  background: transparent;
+  //
+  background-color: $main-purple-opacity;
+  border-radius: 2rem;
+  height: 4rem;
+  width: 100%;
+
+  p {
+    color: $main-purple;
+    font: $font;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 2.3rem;
+  }
+}
