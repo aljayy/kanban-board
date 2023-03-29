@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import classes from "./EditBoard.module.scss";
 import ActionInput from "../../UI/ActionInput";
-import BoardCtx from "../../../context/boardctx";
 import ActionTagInput from "../../UI/ActionTagInput";
 import ActionTitle from "../../UI/ActionTitle";
+import BoardCtx from "../../../context/boardctx";
 import SmallButtonPrimary from "../../UI/Buttons/SmallButtonPrimary";
+import ThemeCtx from "../../../context/themectx";
 
 function EditBoard() {
   const { showEditBoard, toggleEditBoardModal } = useContext(BoardCtx);
+  const { theme } = useContext(ThemeCtx);
 
   const transition = showEditBoard ? "" : classes["hide-edit-board"];
 
@@ -36,7 +38,7 @@ function EditBoard() {
       onClick={toggleEditBoardModal}
     >
       <div
-        className={classes["edit-board-wrapper"]}
+        className={`${classes["edit-board-wrapper"]} ${classes[theme]}`}
         onClick={(e) => e.stopPropagation()}
       >
         <ActionTitle title={title} />
