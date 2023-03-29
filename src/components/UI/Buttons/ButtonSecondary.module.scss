@@ -7,7 +7,6 @@
   outline: none;
   background: transparent;
   //
-  background-color: $main-purple-opacity;
   border-radius: 2rem;
   height: 4rem;
   width: 100%;
@@ -19,4 +18,12 @@
     font-weight: 700;
     line-height: 2.3rem;
   }
+}
+
+.light {
+  background-color: $main-purple-opacity;
+}
+
+.dark {
+  background-color: $white;
 }
