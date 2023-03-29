@@ -1,0 +1,29 @@
+@use "../../styles/mixins.module";
+@import "../../styles/variables.module";
+
+.action-input-label {
+  @include mixins.medium-body;
+  color: $medium-grey;
+}
+
+.action-input {
+  @include mixins.large-body;
+  border: 1px solid $lines-opacity;
+  border-radius: 0.4rem;
+  height: 4rem;
+  padding-left: 1.6rem;
+  color: $black;
+
+  &:active {
+    outline: 1px solid $main-purple;
+  }
+
+  &:focus {
+    outline: transparent;
+  }
+
+  &::placeholder {
+    color: $black;
+    opacity: 0.25;
+  }
+}
