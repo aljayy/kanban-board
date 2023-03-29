@@ -1,0 +1,22 @@
+@use "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.small-button-primary {
+  // Remove default button styling
+  border: none;
+  outline: none;
+  background: transparent;
+  //
+  background-color: $main-purple;
+  border-radius: 2rem;
+  height: 4rem;
+  width: 100%;
+
+  p {
+    color: $white;
+    font: $font;
+    line-height: 2.3rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+}
