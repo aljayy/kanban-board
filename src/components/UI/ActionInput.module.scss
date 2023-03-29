@@ -8,11 +8,11 @@
 
 .action-input {
   @include mixins.large-body;
+  background-color: transparent;
   border: 1px solid $lines-opacity;
   border-radius: 0.4rem;
   height: 4rem;
   padding-left: 1.6rem;
-  color: $black;
 
   &:active {
     outline: 1px solid $main-purple;
@@ -23,7 +23,30 @@
   }
 
   &::placeholder {
-    color: $black;
     opacity: 0.25;
+  }
+}
+
+.light-label {
+  color: $medium-grey;
+}
+
+.dark-label {
+  color: $white;
+}
+
+.light-input {
+  color: $black;
+
+  &::placeholder {
+    color: $black;
+  }
+}
+
+.dark-input {
+  color: $white;
+
+  &::placeholder {
+    color: $white;
   }
 }
