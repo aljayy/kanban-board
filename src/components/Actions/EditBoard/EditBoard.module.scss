@@ -48,3 +48,10 @@
 .dark {
   background-color: $dark-grey;
 }
+
+@media (min-width: 768px) {
+  .overlay .edit-board-wrapper {
+    margin: 0 14.4rem;
+    padding: 3.2rem;
+  }
+}
