@@ -1,0 +1,47 @@
+@use "../../styles/mixins.module";
+@import "../../styles/variables.module";
+
+.action-tag-label {
+  @include mixins.medium-body;
+  color: $medium-grey;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+.action-tag-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+
+  input {
+    @include mixins.large-body;
+    border: 1px solid $lines-opacity;
+    border-radius: 0.4rem;
+    height: 4rem;
+    width: 100%;
+    padding-left: 1.6rem;
+    color: $black;
+
+    &:active {
+      outline: 1px solid $main-purple;
+    }
+
+    &:focus {
+      outline: transparent;
+    }
+
+    &::placeholder {
+      color: $black;
+      opacity: 0.25;
+    }
+  }
+
+  img {
+    margin-left: 1.6rem;
+  }
+
+  .action-button {
+    width: 100%;
+  }
+}
