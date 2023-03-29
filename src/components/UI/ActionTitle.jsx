@@ -3,7 +3,11 @@ import classes from "./ActionTitle.module.scss";
 import ThemeCtx from "../../context/themectx";
 
 function ActionTitle({ title }) {
-  return <p className={classes["action-title"]}>{title}</p>;
+  const { theme } = useContext(ThemeCtx);
+
+  return (
+    <p className={`${classes["action-title"]} ${classes[theme]}`}>{title}</p>
+  );
 }
 
 export default ActionTitle;
