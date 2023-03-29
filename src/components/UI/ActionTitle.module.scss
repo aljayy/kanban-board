@@ -1,0 +1,15 @@
+@use "../../styles/mixins.module";
+@import "../../styles/variables.module";
+
+.action-title {
+  @include mixins.large-heading;
+  margin-bottom: 2.4rem;
+}
+
+// .light {
+//   color: $black;
+// }
+
+// .dark {
+//   color: $white;
+// }
