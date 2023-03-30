@@ -4,9 +4,11 @@ import activeBoardIcon from "../../../assets/icon-active-board.svg";
 import newBoardIcon from "../../../assets/icon-new-board.svg";
 import classes from "./AllBoards.module.scss";
 import BoardCtx from "../../../context/boardctx";
+import ThemeCtx from "../../../context/themectx";
 
 function AllBoards() {
   const { activeBoard, boards, toggleActiveBoard } = useContext(BoardCtx);
+  const { theme } = useContext(ThemeCtx);
 
   return (
     <>
@@ -15,7 +17,7 @@ function AllBoards() {
         let active =
           activeBoard.id === board.id
             ? classes["active-board"]
-            : classes["non-active-board"];
+            : `${classes["non-active-board"]} ${classes[theme]}`;
 
         let icon =
           activeBoard.id === board.id ? activeBoardIcon : inactiveBoardIcon;

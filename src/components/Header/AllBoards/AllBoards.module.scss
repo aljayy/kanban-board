@@ -22,6 +22,7 @@ li {
     font: inherit;
     background: transparent;
     //
+    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 1.2rem;
@@ -31,6 +32,26 @@ li {
 
     p {
       margin-bottom: 0.1rem;
+    }
+  }
+}
+
+.light {
+  &:hover {
+    background-color: $main-purple-opacity;
+
+    button {
+      color: $main-purple;
+    }
+  }
+}
+
+.dark {
+  &:hover {
+    background-color: $white;
+
+    button {
+      color: $main-purple;
     }
   }
 }
@@ -47,6 +68,10 @@ li {
     color: $medium-grey;
   }
 }
+
+// .light {
+
+// }
 
 .new-board {
   button {
