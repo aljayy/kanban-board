@@ -11,7 +11,7 @@ function ActionInput({ input }) {
     <>
       <label
         className={`${classes["action-input-label"]} ${labelTheme}`}
-        for={input.id}
+        htmlFor={input.id}
       >
         {input.label}
       </label>
