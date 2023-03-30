@@ -6,7 +6,7 @@ import classes from "./AllBoards.module.scss";
 import BoardCtx from "../../../context/boardctx";
 
 function AllBoards() {
-  const { activeBoard, boards } = useContext(BoardCtx);
+  const { activeBoard, boards, toggleActiveBoard } = useContext(BoardCtx);
 
   return (
     <>
@@ -22,7 +22,7 @@ function AllBoards() {
 
         return (
           <li key={board.id} className={active}>
-            <button>
+            <button onClick={() => toggleActiveBoard(board)}>
               <img src={icon} alt="Board Icon" />
               <p>{board.name}</p>
             </button>
