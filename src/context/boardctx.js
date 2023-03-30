@@ -7,6 +7,7 @@ const BoardCtx = React.createContext({
   boards: [],
   showEditBoard: Boolean,
   showSidebar: Boolean,
+  toggleActiveBoard: () => {},
   toggleEditBoardModal: () => {},
   toggleSidebar: () => {},
 });
@@ -35,6 +36,10 @@ export const BoardCtxProvider = ({ children }) => {
     setActiveBoard(boardWithIds[0]);
   }, []);
 
+  function toggleActiveBoard(board) {
+    setActiveBoard(board);
+  }
+
   function toggleSidebar() {
     setShowSidebar((prev) => !prev);
   }
@@ -50,6 +55,7 @@ export const BoardCtxProvider = ({ children }) => {
         boards,
         showEditBoard,
         showSidebar,
+        toggleActiveBoard,
         toggleEditBoardModal,
         toggleSidebar,
       }}
