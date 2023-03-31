@@ -27,8 +27,8 @@ function Sidebar() {
           <div className={classes["theme-toggle"]}>
             <ThemeToggler />
           </div>
-          <li className={classes["hide-sb"]}>
-            <button onClick={toggleSidebar}>
+          <li className={classes["hide-sb"]} onClick={toggleSidebar}>
+            <button>
               <img src={hide} alt="Hide Board Icon" />
               <p>Hide Sidebar</p>
             </button>
