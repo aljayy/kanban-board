@@ -23,8 +23,12 @@ function AllBoards() {
           activeBoard.id === board.id ? activeBoardIcon : inactiveBoardIcon;
 
         return (
-          <li key={board.id} className={active}>
-            <button onClick={() => toggleActiveBoard(board)}>
+          <li
+            key={board.id}
+            className={active}
+            onClick={() => toggleActiveBoard(board)}
+          >
+            <button>
               <img src={icon} alt="Board Icon" />
               <p>{board.name}</p>
             </button>
