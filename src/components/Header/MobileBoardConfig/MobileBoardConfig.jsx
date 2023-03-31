@@ -4,11 +4,13 @@ import cross from "../../../assets/icon-add-task-mobile.svg";
 import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
 import logo from "../../../assets/logo-mobile.svg";
 import path from "../../../assets/icon-chevron-down.svg";
+import BoardCtx from "../../../context/boardctx";
 import MobileMenuModal from "./MobileMenuModal";
 import ThemeCtx from "../../../context/themectx";
 
 function MobileHeader() {
   const [viewMenu, setViewMenu] = useState(false);
+  const { activeBoard } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
 
   function toggleMenu() {
@@ -27,7 +29,7 @@ function MobileHeader() {
           className={`${classes["mobile-board-title"]} ${classes[theme]}`}
           onClick={toggleMenu}
         >
-          Platform Launch
+          {activeBoard.name}
         </h2>
         <img
           src={path}
