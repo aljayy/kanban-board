@@ -2,16 +2,17 @@
 @import "../../../styles/variables.module";
 
 .task {
-  background-color: $white;
   border-radius: 0.8rem;
   box-shadow: $secondary-box-shadow;
   width: 100%;
   height: 100%;
   padding: 2.3rem 1.6rem;
+  transition: background-color 0.5s ease-in-out;
 
   .task-title {
     @include mixins.medium-heading;
     margin-bottom: 0.8rem;
+    transition: color 0.5s ease-in-out;
   }
 
   .subtasks {
