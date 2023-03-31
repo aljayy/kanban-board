@@ -1,0 +1,31 @@
+@use "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.column-wrapper {
+  width: 28rem;
+
+  .title-wrapper {
+    display: flex;
+    gap: 1.2rem;
+
+    .oval {
+      background-color: #49c4e5;
+      border-radius: 50%;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+
+    .title {
+      @include mixins.small-heading;
+      color: $medium-grey;
+      text-transform: uppercase;
+    }
+  }
+
+  .tasks-wrapper {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
