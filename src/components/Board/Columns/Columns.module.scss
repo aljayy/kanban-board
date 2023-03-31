@@ -18,3 +18,13 @@
     left: 26.1rem;
   }
 }
+
+@media (min-width: 1440px) {
+  .columns-wrapper {
+    padding: 2.4rem 0 0 2.4rem;
+  }
+
+  .transition {
+    left: 30rem;
+  }
+}
