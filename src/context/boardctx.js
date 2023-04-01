@@ -7,10 +7,12 @@ const BoardCtx = React.createContext({
   boards: [],
   showEditBoard: Boolean,
   showSidebar: Boolean,
+  showViewTask: Boolean,
   toggleActiveBoard: () => {},
   toggleEditBoardModal: () => {},
   toggleMobileMenu: () => {},
   toggleSidebar: () => {},
+  toggleViewTask: () => {},
   viewMobileMenu: Boolean,
 });
 
@@ -19,6 +21,7 @@ export const BoardCtxProvider = ({ children }) => {
   const [boards, setBoards] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showEditBoard, setShowEditBoard] = useState(false);
+  const [showViewTask, setShowViewTask] = useState(false);
   const [viewMobileMenu, setViewMobileMenu] = useState(false);
 
   useEffect(() => {
@@ -51,6 +54,10 @@ export const BoardCtxProvider = ({ children }) => {
     setShowSidebar((prev) => !prev);
   }
 
+  function toggleViewTask() {
+    setShowViewTask((prev) => !prev);
+  }
+
   function toggleEditBoardModal() {
     setShowEditBoard((prev) => !prev);
   }
@@ -62,10 +69,12 @@ export const BoardCtxProvider = ({ children }) => {
         boards,
         showEditBoard,
         showSidebar,
+        showViewTask,
         toggleActiveBoard,
         toggleEditBoardModal,
         toggleMobileMenu,
         toggleSidebar,
+        toggleViewTask,
         viewMobileMenu,
       }}
     >
