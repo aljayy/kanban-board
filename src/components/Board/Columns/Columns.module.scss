@@ -5,6 +5,7 @@
   padding: 2.4rem 0 0 1.6rem;
   margin-top: 6.4rem;
   overflow: scroll;
+  z-index: 0;
 
   &::-webkit-scrollbar {
     display: none;
@@ -17,6 +18,7 @@
     position: relative;
     left: 0;
     transition: left 0.5s ease-in-out;
+    margin-top: 8.1rem;
   }
 
   .transition {
@@ -27,6 +29,7 @@
 @media (min-width: 1440px) {
   .columns-wrapper {
     padding: 2.4rem 0 0 2.4rem;
+    margin-top: 9.7rem;
   }
 
   .transition {
