@@ -9,7 +9,9 @@ const BoardCtx = React.createContext({
   showSidebar: Boolean,
   toggleActiveBoard: () => {},
   toggleEditBoardModal: () => {},
+  toggleMobileMenu: () => {},
   toggleSidebar: () => {},
+  viewMobileMenu: Boolean,
 });
 
 export const BoardCtxProvider = ({ children }) => {
@@ -17,6 +19,7 @@ export const BoardCtxProvider = ({ children }) => {
   const [boards, setBoards] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showEditBoard, setShowEditBoard] = useState(false);
+  const [viewMobileMenu, setViewMobileMenu] = useState(false);
 
   useEffect(() => {
     let boardWithIds = data.boards.map((board) => ({
@@ -35,6 +38,10 @@ export const BoardCtxProvider = ({ children }) => {
     setBoards(boardWithIds);
     setActiveBoard(boardWithIds[0]);
   }, []);
+
+  function toggleMobileMenu() {
+    setViewMobileMenu((prev) => !prev);
+  }
 
   function toggleActiveBoard(board) {
     setActiveBoard(board);
@@ -57,7 +64,9 @@ export const BoardCtxProvider = ({ children }) => {
         showSidebar,
         toggleActiveBoard,
         toggleEditBoardModal,
+        toggleMobileMenu,
         toggleSidebar,
+        viewMobileMenu,
       }}
     >
       {children}
