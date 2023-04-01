@@ -4,12 +4,12 @@ import ActionInput from "../../UI/ActionInput";
 import ActionTagInput from "../../UI/ActionTagInput";
 import ActionTitle from "../../UI/ActionTitle";
 import BoardCtx from "../../../context/boardctx";
+import OverlayPortal from "../../UI/OverlayPortal/OverlayPortal";
 import SmallButtonPrimary from "../../UI/Buttons/SmallButtonPrimary";
-import ThemeCtx from "../../../context/themectx";
+import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
 
 function EditBoard() {
   const { showEditBoard, toggleEditBoardModal } = useContext(BoardCtx);
-  const { theme } = useContext(ThemeCtx);
 
   const transition = showEditBoard ? "" : classes["hide-edit-board"];
 
@@ -30,17 +30,14 @@ function EditBoard() {
     label: "Board Columns",
     type: "text",
   };
-  //
 
   return (
-    <div
-      className={`${classes.overlay} ${transition}`}
+    <OverlayPortal
+      classes={`${classes.overlay} ${transition}`}
       onClick={toggleEditBoardModal}
+      portalId={"portal-2"}
     >
-      <div
-        className={`${classes["edit-board-wrapper"]} ${classes[theme]}`}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <ModalWrapper onClick={(e) => e.stopPropagation()}>
         <ActionTitle title={title} />
         <div className={classes["board-name-wrapper"]}>
           <ActionInput input={inputData} />
@@ -51,8 +48,8 @@ function EditBoard() {
         <div className={classes.save}>
           <SmallButtonPrimary text={"Save Changes"} />
         </div>
-      </div>
-    </div>
+      </ModalWrapper>
+    </OverlayPortal>
   );
 }
 
