@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import classes from "./MobileBoardConfig.module.scss";
 import cross from "../../../assets/icon-add-task-mobile.svg";
 import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
@@ -9,13 +9,9 @@ import MobileMenuModal from "./MobileMenuModal";
 import ThemeCtx from "../../../context/themectx";
 
 function MobileHeader() {
-  const [viewMenu, setViewMenu] = useState(false);
-  const { activeBoard } = useContext(BoardCtx);
+  const { activeBoard, viewMobileMenu, toggleMobileMenu } =
+    useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
-
-  function toggleMenu() {
-    setViewMenu((prev) => !prev);
-  }
 
   return (
     <>
@@ -27,15 +23,15 @@ function MobileHeader() {
         />
         <h2
           className={`${classes["mobile-board-title"]} ${classes[theme]}`}
-          onClick={toggleMenu}
+          onClick={toggleMobileMenu}
         >
           {activeBoard.name}
         </h2>
         <img
           src={path}
           alt={"Chevron icon"}
-          className={`${classes.path} ${viewMenu ? classes.rotate : ""}`}
-          onClick={toggleMenu}
+          className={`${classes.path} ${viewMobileMenu ? classes.rotate : ""}`}
+          onClick={toggleMobileMenu}
         />
       </div>
       <div className={classes["board-actions"]}>
@@ -44,7 +40,7 @@ function MobileHeader() {
         </button>
         <img src={ellipsis} alt={"Ellipsis icon"} />
       </div>
-      <MobileMenuModal viewMenu={viewMenu} toggleMenu={toggleMenu} />
+      <MobileMenuModal />
     </>
   );
 }
