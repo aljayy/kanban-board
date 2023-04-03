@@ -1,10 +1,16 @@
 import React from "react";
+import ReactDOM from "react-dom";
 
 function OverlayPortal({ classes, onClick, children }) {
   return (
-    <div className={classes} onClick={onClick}>
-      {children}
-    </div>
+    <>
+      {ReactDOM.createPortal(
+        <div className={classes} onClick={onClick}>
+          {children}
+        </div>,
+        document.getElementById("overlay-root")
+      )}
+    </>
   );
 }
 
