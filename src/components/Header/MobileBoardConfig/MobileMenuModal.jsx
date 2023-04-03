@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import ReactDOM from "react-dom";
 import classes from "./MobileMenuModal.module.scss";
 import AllBoards from "../AllBoards/AllBoards";
 import BoardCtx from "../../../context/boardctx";
@@ -15,24 +14,19 @@ function MobileModal() {
     : classes["hide-menu"];
 
   return (
-    <>
-      {ReactDOM.createPortal(
-        <OverlayPortal
-          toggleMobileMenu={toggleMobileMenu}
-          viewMobileMenu={viewMobileMenu}
-        >
-          <menu onClick={(e) => e.stopPropagation()} className={classes[theme]}>
-            <div className={classes["mobile-all-boards"]}>
-              <AllBoards />
-            </div>
-            <div className={classes["theme-toggler-wrapper"]}>
-              <ThemeToggler />
-            </div>
-          </menu>
-        </OverlayPortal>,
-        document.getElementById("overlay-root")
-      )}
-    </>
+    <OverlayPortal
+      classes={`${classes.overlay} ${opacityTransition}`}
+      onClick={toggleMobileMenu}
+    >
+      <menu onClick={(e) => e.stopPropagation()} className={classes[theme]}>
+        <div className={classes["mobile-all-boards"]}>
+          <AllBoards />
+        </div>
+        <div className={classes["theme-toggler-wrapper"]}>
+          <ThemeToggler />
+        </div>
+      </menu>
+    </OverlayPortal>
   );
 }
 
