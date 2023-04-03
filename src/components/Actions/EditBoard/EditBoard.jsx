@@ -35,7 +35,6 @@ function EditBoard() {
     <OverlayPortal
       classes={`${classes.overlay} ${transition}`}
       onClick={toggleEditBoardModal}
-      portalId={"portal-2"}
     >
       <ModalWrapper onClick={(e) => e.stopPropagation()}>
         <ActionTitle title={title} />
