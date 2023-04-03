@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import classes from "./Columns.module.scss";
 import BoardCtx from "../../../context/boardctx";
 import Column from "../Column/Column";
+import ViewTask from "../../Actions/ViewTask/ViewTask";
 
 function Columns() {
   const { activeBoard, showSidebar } = useContext(BoardCtx);
@@ -14,6 +15,7 @@ function Columns() {
         activeBoard.columns.map((column) => {
           return <Column column={column} key={column.id} />;
         })}
+      <ViewTask />
     </div>
   );
 }
