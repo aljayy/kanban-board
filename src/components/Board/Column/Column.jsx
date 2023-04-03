@@ -3,7 +3,6 @@ import Task from "../Task/Task";
 import classes from "./Column.module.scss";
 
 function Column({ column }) {
-  console.log(column);
   return (
     <div className={classes["column-wrapper"]}>
       <div className={classes["title-wrapper"]}>
