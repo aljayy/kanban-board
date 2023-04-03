@@ -4,6 +4,7 @@
 .task {
   border-radius: 0.8rem;
   box-shadow: $secondary-box-shadow;
+  cursor: pointer;
   width: 100%;
   height: 100%;
   padding: 2.3rem 1.6rem;
@@ -13,6 +14,11 @@
     @include mixins.medium-heading;
     margin-bottom: 0.8rem;
     transition: color 0.5s ease-in-out;
+
+    &:hover {
+      color: $main-purple;
+      transition: color 0s ease-in-out;
+    }
   }
 
   .subtasks {
