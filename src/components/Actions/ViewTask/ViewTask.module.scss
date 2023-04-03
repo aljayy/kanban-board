@@ -1,0 +1,120 @@
+@use "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.5s ease;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  z-index: 4;
+
+  .task-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.6rem;
+    margin-bottom: 2.4rem;
+
+    button {
+      // Remove default button styling
+      border: none;
+      outline: none;
+      font: inherit;
+      background: transparent;
+      //
+    }
+  }
+
+  .task-desc {
+    @include mixins.large-body;
+    color: $medium-grey;
+    margin-bottom: 2.4rem;
+  }
+
+  .subtasks-wrapper {
+    margin-bottom: 2.4rem;
+
+    .tracker {
+      @include mixins.medium-body;
+      color: $medium-grey;
+      margin-bottom: 1.6rem;
+    }
+
+    .subtask {
+      background-color: $light-mode-bg;
+      border-radius: 0.4rem;
+      padding: 1.2rem 0.8rem 1.2rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      margin-bottom: 0.8rem;
+
+      .checkbox {
+        height: 1.6rem;
+        flex: 0 0 1.6rem;
+        border-radius: 0.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      p {
+        @include mixins.medium-body;
+      }
+    }
+  }
+
+  .status {
+    p {
+      @include mixins.medium-body;
+      color: $medium-grey;
+    }
+
+    .current-status {
+      margin-top: 0.8rem;
+      .selected {
+        width: 100%;
+        height: 4rem;
+        border: 1px solid $lines-opacity;
+        border-radius: 0.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.6rem;
+
+        p {
+          @include mixins.large-body;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.hide-task {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.checked {
+  background-color: $main-purple;
+
+  img {
+    display: block;
+  }
+}
+
+.unchecked {
+  background-color: $white;
+  border: 1px solid $lines-opacity;
+
+  img {
+    display: none;
+  }
+}
