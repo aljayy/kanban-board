@@ -7,9 +7,13 @@ import ThemeCtx from "../../../context/themectx";
 
 function BoardConfig() {
   const { theme } = useContext(ThemeCtx);
-  const { activeBoard, showSidebar } = useContext(BoardCtx);
+  const { boards, showSidebar } = useContext(BoardCtx);
 
   const paddingTransition = showSidebar ? classes["add-padding"] : "";
+
+  if (boards.length < 1) return;
+
+  let activeBoard = boards.find((board) => board.isActive);
 
   return (
     <>
