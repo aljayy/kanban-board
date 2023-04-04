@@ -1,80 +1,87 @@
 import React, { useEffect, useState } from "react";
-import { v4 as uuidv5 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import data from "../data.json";
 
 const BoardCtx = React.createContext({
-  activeBoard: {},
   boards: [],
+  taskDetails: {},
+  setTaskDetails: () => {},
   showEditBoard: Boolean,
   showSidebar: Boolean,
+  showTaskDetails: Boolean,
   showViewTask: Boolean,
   toggleActiveBoard: () => {},
   toggleEditBoardModal: () => {},
   toggleMobileMenu: () => {},
   toggleSidebar: () => {},
-  toggleViewTask: () => {},
+  toggleTaskDetailsModal: () => {},
   viewMobileMenu: Boolean,
 });
 
 export const BoardCtxProvider = ({ children }) => {
-  const [activeBoard, setActiveBoard] = useState({});
   const [boards, setBoards] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showEditBoard, setShowEditBoard] = useState(false);
-  const [showViewTask, setShowViewTask] = useState(false);
+  const [showTaskDetails, setShowTaskDetails] = useState(false);
+  const [taskDetails, setTaskDetails] = useState({});
   const [viewMobileMenu, setViewMobileMenu] = useState(false);
 
   useEffect(() => {
     let boardWithIds = data.boards.map((board) => ({
       ...board,
-      id: uuidv5(),
+      id: uuidv4(),
       columns: board.columns.map((column) => ({
         ...column,
-        id: uuidv5(),
+        id: uuidv4(),
         tasks: column.tasks.map((task) => ({
           ...task,
-          id: uuidv5(),
+          id: uuidv4(),
         })),
       })),
     }));
 
     setBoards(boardWithIds);
-    setActiveBoard(boardWithIds[0]);
   }, []);
 
   function toggleMobileMenu() {
     setViewMobileMenu((prev) => !prev);
   }
 
-  function toggleActiveBoard(board) {
-    setActiveBoard(board);
+  function toggleActiveBoard(id) {
+    setBoards((prevBoards) => {
+      return prevBoards.map((board) => {
+        if (board.id === id) return { ...board, isActive: true };
+        else return { ...board, isActive: false };
+      });
+    });
   }
 
   function toggleSidebar() {
     setShowSidebar((prev) => !prev);
   }
 
-  function toggleViewTask() {
-    setShowViewTask((prev) => !prev);
-  }
-
   function toggleEditBoardModal() {
     setShowEditBoard((prev) => !prev);
+  }
+
+  function toggleTaskDetailsModal() {
+    setShowTaskDetails((prev) => !prev);
   }
 
   return (
     <BoardCtx.Provider
       value={{
-        activeBoard,
         boards,
+        taskDetails,
+        setTaskDetails,
+        showTaskDetails,
         showEditBoard,
         showSidebar,
-        showViewTask,
         toggleActiveBoard,
         toggleEditBoardModal,
         toggleMobileMenu,
         toggleSidebar,
-        toggleViewTask,
+        toggleTaskDetailsModal,
         viewMobileMenu,
       }}
     >
