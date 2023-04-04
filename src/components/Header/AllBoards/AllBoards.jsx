@@ -7,8 +7,12 @@ import BoardCtx from "../../../context/boardctx";
 import ThemeCtx from "../../../context/themectx";
 
 function AllBoards() {
-  const { activeBoard, boards, toggleActiveBoard } = useContext(BoardCtx);
+  const { boards, toggleActiveBoard } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
+
+  if (boards.length < 1) return;
+
+  const activeBoard = boards.find((board) => board.isActive);
 
   return (
     <>
@@ -26,7 +30,7 @@ function AllBoards() {
           <li
             key={board.id}
             className={active}
-            onClick={() => toggleActiveBoard(board)}
+            onClick={() => toggleActiveBoard(board.id)}
           >
             <button>
               <img src={icon} alt="Board Icon" />
