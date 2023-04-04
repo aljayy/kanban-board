@@ -9,9 +9,12 @@ import MobileMenuModal from "./MobileMenuModal";
 import ThemeCtx from "../../../context/themectx";
 
 function MobileHeader() {
-  const { activeBoard, viewMobileMenu, toggleMobileMenu } =
-    useContext(BoardCtx);
+  const { boards, viewMobileMenu, toggleMobileMenu } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
+
+  if (boards.length < 1) return;
+
+  const activeBoard = boards.find((board) => board.isActive);
 
   return (
     <>
