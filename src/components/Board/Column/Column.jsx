@@ -2,7 +2,7 @@ import React from "react";
 import Task from "../Task/Task";
 import classes from "./Column.module.scss";
 
-function Column({ column }) {
+function Column({ column, componentIds }) {
   return (
     <div className={classes["column-wrapper"]}>
       <div className={classes["title-wrapper"]}>
@@ -13,7 +13,13 @@ function Column({ column }) {
       </div>
       <div className={classes["tasks-wrapper"]}>
         {column.tasks.map((task) => {
-          return <Task task={task} key={task.id} />;
+          return (
+            <Task
+              task={task}
+              key={task.id}
+              componentIds={{ ...componentIds, task: task.id }}
+            />
+          );
         })}
       </div>
     </div>
