@@ -16,7 +16,13 @@ function Columns() {
   return (
     <div className={`${classes["columns-wrapper"]} ${transitionClass}`}>
       {activeBoard.columns.map((column) => {
-        return <Column column={column} key={column.id} />;
+        return (
+          <Column
+            column={column}
+            key={column.id}
+            componentIds={{ board: activeBoard.id, column: column.id }}
+          />
+        );
       })}
       <ViewTask />
     </div>
