@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classes from "./ViewTask.module.scss";
 import ActionTitle from "../../UI/ActionTitle";
 import BoardCtx from "../../../context/boardctx";
@@ -9,12 +9,40 @@ import check from "../../../assets/icon-check.svg";
 import chevron from "../../../assets/icon-chevron-down.svg";
 
 function ViewTask() {
-  const { taskDetails, toggleTaskDetailsModal, showTaskDetails } =
+  const { toggleTaskDetailsModal, showTaskDetails, boards, ids, updateTask } =
     useContext(BoardCtx);
-
   const transition = showTaskDetails ? "" : classes["hide-task"];
+  const [task, setTask] = useState([]);
 
-  if (!showTaskDetails) return;
+  useEffect(() => {
+    if (Object.keys(ids).length > 2) {
+      let currentTask = boards
+        .find((board) => board.isActive)
+        .columns.find((column) => column.id === ids.column)
+        .tasks.find((task) => task.id === ids.task);
+      setTask(currentTask);
+    }
+  }, [boards, ids]);
+
+  if (task.length < 1) return;
+
+  function toggleCompleted(index) {
+    let updatedTask = {
+      ...task,
+      subtasks: task.subtasks.map((subtask, i) => {
+        if (i === index) {
+          return {
+            ...subtask,
+            isCompleted: !subtask.isCompleted,
+          };
+        }
+        return subtask;
+      }),
+    };
+
+    setTask(updatedTask);
+    updateTask(updatedTask);
+  }
 
   return (
     <OverlayPortal
@@ -23,22 +51,30 @@ function ViewTask() {
     >
       <ModalWrapper onClick={(e) => e.stopPropagation()}>
         <div className={classes["task-title"]}>
-          <ActionTitle title={taskDetails.title} />
+          <ActionTitle title={task.title} />
           <button>
             <img src={ellipsis} alt="Ellipsis Icon" />
           </button>
         </div>
         <div className={classes["task-desc"]}>
-          <p>{taskDetails.description}</p>
+          <p>{task.description}</p>
         </div>
         <div className={classes["subtasks-wrapper"]}>
           <p
             className={classes.tracker}
-          >{`Subtasks (0 of ${taskDetails.subtasks.length})`}</p>
-          {taskDetails.subtasks.map((subtask) => {
+          >{`Subtasks (0 of ${task.subtasks.length})`}</p>
+          {task.subtasks.map((subtask, index) => {
             return (
-              <div className={classes.subtask}>
-                <div className={`${classes.checkbox} ${classes.unchecked}`}>
+              <div
+                className={classes.subtask}
+                key={index}
+                onClick={() => toggleCompleted(index)}
+              >
+                <div
+                  className={`${classes.checkbox} ${
+                    subtask.isCompleted ? classes.checked : classes.unchecked
+                  }`}
+                >
                   <img src={check} alt="Check Icon" />
                 </div>
                 <p>{subtask.title}</p>
@@ -53,6 +89,7 @@ function ViewTask() {
               <p>Doing</p>
               <img src={chevron} alt="Chevron Icon" />
             </div>
+            {/* All other available statuses will be rendered in this next div */}
             <div></div>
           </div>
         </div>
