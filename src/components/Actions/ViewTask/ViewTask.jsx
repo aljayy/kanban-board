@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import classes from "./ViewTask.module.scss";
 import check from "../../../assets/icon-check.svg";
-import chevron from "../../../assets/icon-chevron-down.svg";
 import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
 import ActionTitle from "../../UI/ActionTitle";
 import BoardCtx from "../../../context/boardctx";
+import ChangeTaskStatus from "../ChangeTaskStatus/ChangeTaskStatus";
 import ThemeCtx from "../../../context/themectx";
 import OverlayPortal from "../../UI/OverlayPortal/OverlayPortal";
 import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
@@ -29,7 +29,6 @@ function ViewTask() {
   if (task.length < 1) return;
 
   function toggleCompleted(index) {
-    console.log("toggle");
     let updatedTask = {
       ...task,
       subtasks: task.subtasks.map((subtask, i) => {
@@ -83,17 +82,7 @@ function ViewTask() {
             );
           })}
         </div>
-        <div className={classes.status}>
-          <p>Current Status</p>
-          <div className={classes["current-status"]}>
-            <div className={classes.selected}>
-              <p>Doing</p>
-              <img src={chevron} alt="Chevron Icon" />
-            </div>
-            {/* All other available statuses will be rendered in this next div */}
-            <div></div>
-          </div>
-        </div>
+        <ChangeTaskStatus theme={theme} />
       </ModalWrapper>
     </OverlayPortal>
   );
