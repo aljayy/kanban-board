@@ -102,10 +102,17 @@
 }
 
 .checked {
-  background-color: $main-purple;
+  .checkbox {
+    background-color: $main-purple !important;
 
-  img {
-    display: block;
+    img {
+      display: block !important;
+    }
+  }
+
+  p {
+    text-decoration: line-through;
+    opacity: 50%;
   }
 }
 
@@ -118,7 +125,7 @@
     .subtask {
       background-color: $dark-mode-bg;
 
-      .unchecked {
+      .checkbox {
         background-color: $dark-grey;
         border: 1px solid $lines-opacity;
 
@@ -153,7 +160,7 @@
     .subtask {
       background-color: $light-mode-bg;
 
-      .unchecked {
+      .checkbox {
         background-color: $white;
         border: 1px solid $lines-opacity;
 

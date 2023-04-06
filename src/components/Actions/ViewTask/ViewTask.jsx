@@ -69,15 +69,13 @@ function ViewTask() {
           {task.subtasks.map((subtask, index) => {
             return (
               <div
-                className={classes.subtask}
+                className={`${classes.subtask} ${
+                  subtask.isCompleted ? classes.checked : classes.unchecked
+                }`}
                 key={index}
                 onClick={() => toggleCompleted(index)}
               >
-                <div
-                  className={`${classes.checkbox} ${
-                    subtask.isCompleted ? classes.checked : classes.unchecked
-                  }`}
-                >
+                <div className={`${classes.checkbox}`}>
                   <img src={check} alt="Check Icon" />
                 </div>
                 <p>{subtask.title}</p>
