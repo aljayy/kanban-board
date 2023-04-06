@@ -2,10 +2,9 @@
   background-color: inherit;
   display: inline-flex;
   gap: 2.4rem;
-  padding: 2.4rem 0 0 1.6rem;
+  padding: 2.4rem 1.6rem;
   margin-top: 6.4rem;
-  overflow: scroll;
-  height: 100vh;
+  height: 100%;
   z-index: 0;
 
   &::-webkit-scrollbar {
