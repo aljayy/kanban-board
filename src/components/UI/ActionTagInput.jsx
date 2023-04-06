@@ -14,9 +14,12 @@ function ActionTagInput({ input }) {
       <label className={`${classes["action-tag-label"]} ${labelTheme}`}>
         {input.label}
       </label>
-      {input.columns.map((column) => {
+      {input.columns.map((column, index) => {
         return (
-          <div className={`${classes["action-tag-wrapper"]} ${wrapperTheme}`}>
+          <div
+            className={`${classes["action-tag-wrapper"]} ${wrapperTheme}`}
+            key={index}
+          >
             <input type={input.type} defaultValue={column.title} />
             <img src={deleteIcon} alt="Delete Icon" />
           </div>
