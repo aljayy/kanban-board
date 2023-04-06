@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
 import classes from "./ViewTask.module.scss";
-import ActionTitle from "../../UI/ActionTitle";
-import BoardCtx from "../../../context/boardctx";
-import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
-import OverlayPortal from "../../UI/OverlayPortal/OverlayPortal";
-import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
 import check from "../../../assets/icon-check.svg";
 import chevron from "../../../assets/icon-chevron-down.svg";
+import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
+import ActionTitle from "../../UI/ActionTitle";
+import BoardCtx from "../../../context/boardctx";
+import ThemeCtx from "../../../context/themectx";
+import OverlayPortal from "../../UI/OverlayPortal/OverlayPortal";
+import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
 
 function ViewTask() {
   const { toggleTaskDetailsModal, showTaskDetails, boards, ids, updateTask } =
     useContext(BoardCtx);
+  const { theme } = useContext(ThemeCtx);
   const transition = showTaskDetails ? "" : classes["hide-task"];
   const [task, setTask] = useState([]);
 
@@ -27,6 +29,7 @@ function ViewTask() {
   if (task.length < 1) return;
 
   function toggleCompleted(index) {
+    console.log("toggle");
     let updatedTask = {
       ...task,
       subtasks: task.subtasks.map((subtask, i) => {
@@ -46,7 +49,7 @@ function ViewTask() {
 
   return (
     <OverlayPortal
-      classes={`${classes.overlay} ${transition}`}
+      classes={`${classes.overlay} ${transition} ${classes[theme]}`}
       onClick={toggleTaskDetailsModal}
     >
       <ModalWrapper onClick={(e) => e.stopPropagation()}>
