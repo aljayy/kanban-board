@@ -1,0 +1,47 @@
+@use "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.status {
+  p {
+    @include mixins.medium-body;
+  }
+
+  .current-status {
+    margin-top: 0.8rem;
+
+    .selected {
+      width: 100%;
+      height: 4rem;
+      border: 1px solid $lines-opacity;
+      border-radius: 0.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.6rem;
+
+      p {
+        @include mixins.large-body;
+      }
+    }
+  }
+}
+
+.dark {
+  p {
+    color: $white;
+  }
+
+  .current-status .selected p {
+    color: $white;
+  }
+}
+
+.light {
+  p {
+    color: $medium-grey;
+  }
+
+  .current-status .selected p {
+    color: $black;
+  }
+}
