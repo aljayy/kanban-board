@@ -18,9 +18,9 @@ function Task({ task, componentIds }) {
       onClick={() => viewTaskDetails(task)}
     >
       <p className={classes["task-title"]}>{task.title}</p>
-      <p
-        className={classes["subtasks"]}
-      >{`0 of ${task.subtasks.length} subtasks`}</p>
+      <p className={classes["subtasks"]}>{`${
+        task.subtasks.filter((subtask) => subtask.isCompleted).length
+      } of ${task.subtasks.length} subtasks`}</p>
     </div>
   );
 }
