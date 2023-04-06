@@ -63,9 +63,9 @@ function ViewTask() {
           <p>{task.description}</p>
         </div>
         <div className={classes["subtasks-wrapper"]}>
-          <p
-            className={classes.tracker}
-          >{`Subtasks (0 of ${task.subtasks.length})`}</p>
+          <p className={classes.tracker}>{`Subtasks (${
+            task.subtasks.filter((subtask) => subtask.isCompleted).length
+          } of ${task.subtasks.length})`}</p>
           {task.subtasks.map((subtask, index) => {
             return (
               <div
