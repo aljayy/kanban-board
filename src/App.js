@@ -8,7 +8,7 @@ function App() {
   const { theme } = useContext(ThemeCtx);
 
   return (
-    <div className={`${classes} ${classes[theme]}`}>
+    <div className={classes[theme]}>
       <Header />
       <Board />
     </div>

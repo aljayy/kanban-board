@@ -11,16 +11,19 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+
 .light {
   background-color: $light-mode-bg;
-  min-height: 100vh;
-  min-width: 100vw;
   transition: background-color 0.5s ease-in-out;
 }
 
 .dark {
   background-color: $dark-mode-bg;
-  min-height: 100vh;
-  min-width: 100vw;
   transition: background-color 0.5s ease-in-out;
 }
