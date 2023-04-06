@@ -19,7 +19,7 @@ export const ThemeCtxProvider = ({ children }) => {
     return () => {
       document.documentElement.classList.remove(classes[theme]);
     };
-  });
+  }, [theme]);
 
   return (
     <ThemeCtx.Provider value={{ theme, toggleTheme }}>
