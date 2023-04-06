@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import classes from "../App.module.scss";
 
 const ThemeCtx = React.createContext({
   theme: String,
@@ -11,6 +12,14 @@ export const ThemeCtxProvider = ({ children }) => {
   function toggleTheme() {
     setTheme((prev) => (prev = prev === "light" ? "dark" : "light"));
   }
+
+  useEffect(() => {
+    document.documentElement.classList.add(classes[theme]);
+
+    return () => {
+      document.documentElement.classList.remove(classes[theme]);
+    };
+  });
 
   return (
     <ThemeCtx.Provider value={{ theme, toggleTheme }}>
