@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import classes from "./ChangeTaskStatus.module.scss";
 import chevron from "../../../assets/icon-chevron-down.svg";
 import BoardCtx from "../../../context/boardctx";
+import ThemeCtx from "../../../context/themectx";
 
 function ChangeTaskStatus() {
   const [statuses, setStatuses] = useState();
   const [showDropdown, setShowDropdown] = useState(false);
-  const { boards, theme, ids } = useContext(BoardCtx);
+  const { boards, ids } = useContext(BoardCtx);
+  const { theme } = useContext(ThemeCtx);
   const visibilityToggle = showDropdown ? classes["show-element"] : "";
 
   useEffect(() => {
@@ -35,7 +37,7 @@ function ChangeTaskStatus() {
 
   return (
     <div className={`${classes.status} ${classes[theme]}`}>
-      <p>Current Status</p>
+      <p className={classes["current-status"]}>Current Status</p>
       <div
         className={classes["all-status"]}
         onMouseEnter={renderDropdown}

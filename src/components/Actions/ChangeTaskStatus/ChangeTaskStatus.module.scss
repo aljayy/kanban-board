@@ -65,21 +65,20 @@
 }
 
 .dark {
-  p {
+  .current-status {
     color: $white;
   }
-
-  .current-status .selected p {
-    color: $white;
+  .all-status .selected p {
+    color: white;
   }
 }
 
 .light {
-  p {
+  .current-status {
     color: $medium-grey;
   }
 
-  .current-status .selected p {
+  .all-status .selected p {
     color: $black;
   }
 }
