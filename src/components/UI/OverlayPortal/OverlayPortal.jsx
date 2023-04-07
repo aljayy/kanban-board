@@ -22,7 +22,11 @@ function OverlayPortal({ classes, onClick, children }) {
         <div
           className={classes}
           onClick={onClick}
-          style={{ top: `${position.top}px`, left: `${position.left}px` }}
+          style={{
+            top: `${position.top}px`,
+            left: `${position.left}px`,
+            overflow: "scroll",
+          }}
         >
           {children}
         </div>,
