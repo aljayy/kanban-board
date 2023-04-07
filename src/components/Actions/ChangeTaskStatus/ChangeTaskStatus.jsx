@@ -4,25 +4,53 @@ import chevron from "../../../assets/icon-chevron-down.svg";
 import BoardCtx from "../../../context/boardctx";
 
 function ChangeTaskStatus() {
-  const [currentStatus, setCurrentStatus] = useState();
+  const [statuses, setStatuses] = useState();
+  const [showDropdown, setShowDropdown] = useState(false);
   const { boards, theme, ids } = useContext(BoardCtx);
+  const visibilityToggle = showDropdown ? classes["show-element"] : "";
 
   useEffect(() => {
     let status = boards
       .find((board) => board.isActive)
-      .columns.filter((column) => column.id === ids.column)[0].name;
+      .columns.map((column) => {
+        return {
+          status: column.name,
+          id: column.id,
+          isCurrent: column.id === ids.column,
+        };
+      });
 
-    setCurrentStatus(status);
+    setStatuses(status);
   }, [boards, ids]);
+
+  function renderDropdown() {
+    setShowDropdown(true);
+  }
+
+  function hideDropdown() {
+    setShowDropdown(false);
+  }
+
+  if (!statuses || statuses.length < 1) return;
+
   return (
     <div className={`${classes.status} ${classes[theme]}`}>
       <p>Current Status</p>
-      <div className={classes["current-status"]}>
+      <div
+        className={classes["all-status"]}
+        onMouseEnter={renderDropdown}
+        onMouseLeave={hideDropdown}
+      >
         <div className={classes.selected}>
-          <p>{currentStatus}</p>
+          <p>{statuses.filter((status) => status.isCurrent)[0].status}</p>
           <img src={chevron} alt="Chevron Icon" />
+          <div className={`${classes["spacing-filler"]} ${visibilityToggle}`} />
         </div>
-        <div></div>
+        <div className={`${classes.dropdown} ${visibilityToggle}`}>
+          {statuses.map((status) => {
+            return <p key={status.id}>{status.status}</p>;
+          })}
+        </div>
       </div>
     </div>
   );
