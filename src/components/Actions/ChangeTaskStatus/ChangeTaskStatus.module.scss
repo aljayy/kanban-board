@@ -22,6 +22,10 @@
       justify-content: space-between;
       padding: 0 1.6rem;
 
+      &:hover {
+        border: 1px solid $main-purple;
+      }
+
       p {
         @include mixins.large-body;
       }
