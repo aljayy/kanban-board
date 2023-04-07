@@ -7,7 +7,7 @@ import ThemeCtx from "../../../context/themectx";
 function ChangeTaskStatus() {
   const [statuses, setStatuses] = useState();
   const [showDropdown, setShowDropdown] = useState(false);
-  const { boards, ids } = useContext(BoardCtx);
+  const { boards, ids, changeTaskStatus } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
   const visibilityToggle = showDropdown ? classes["show-element"] : "";
 
@@ -50,7 +50,11 @@ function ChangeTaskStatus() {
         </div>
         <div className={`${classes.dropdown} ${visibilityToggle}`}>
           {statuses.map((status) => {
-            return <p key={status.id}>{status.status}</p>;
+            return (
+              <p key={status.id} onClick={() => changeTaskStatus(status.id)}>
+                {status.status}
+              </p>
+            );
           })}
         </div>
       </div>
