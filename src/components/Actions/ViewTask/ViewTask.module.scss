@@ -45,13 +45,13 @@
     }
 
     .subtask {
-      // background-color: $light-mode-bg;
       border-radius: 0.4rem;
-      padding: 1.2rem 0.8rem 1.2rem 1.2rem;
+      cursor: pointer;
       display: flex;
       align-items: center;
       gap: 1.6rem;
       margin-bottom: 0.8rem;
+      padding: 1.2rem 0.8rem 1.2rem 1.2rem;
 
       .checkbox {
         height: 1.6rem;
@@ -87,6 +87,10 @@
     text-decoration: line-through;
     opacity: 50%;
   }
+}
+
+.unchecked:hover {
+  background-color: $main-purple-opacity !important;
 }
 
 .dark {
