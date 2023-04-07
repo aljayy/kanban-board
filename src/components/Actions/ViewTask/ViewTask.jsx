@@ -82,7 +82,7 @@ function ViewTask() {
             );
           })}
         </div>
-        <ChangeTaskStatus theme={theme} />
+        <ChangeTaskStatus />
       </ModalWrapper>
     </OverlayPortal>
   );
