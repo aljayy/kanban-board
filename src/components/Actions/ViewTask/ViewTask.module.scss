@@ -116,16 +116,6 @@
       }
     }
   }
-
-  .status {
-    p {
-      color: $white;
-    }
-
-    .current-status .selected p {
-      color: $white;
-    }
-  }
 }
 
 .light {
@@ -149,16 +139,6 @@
       p {
         color: $black;
       }
-    }
-  }
-
-  .status {
-    p {
-      color: $medium-grey;
-    }
-
-    .current-status .selected p {
-      color: $black;
     }
   }
 }
