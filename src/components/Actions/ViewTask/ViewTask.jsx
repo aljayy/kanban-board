@@ -26,7 +26,7 @@ function ViewTask() {
     }
   }, [boards, ids]);
 
-  if (task.length < 1) return;
+  if (!task || task.length < 1) return;
 
   function toggleCompleted(index) {
     let updatedTask = {
