@@ -39,7 +39,6 @@
     }
 
     .dropdown {
-      background-color: $white;
       cursor: pointer;
       position: absolute;
       border-radius: 0.8rem;
@@ -68,8 +67,15 @@
   .current-status {
     color: $white;
   }
-  .all-status .selected p {
+
+  .all-status {
+  }
+  .selected p {
     color: white;
+  }
+
+  .dropdown {
+    background-color: $dark-mode-bg;
   }
 }
 
@@ -78,7 +84,13 @@
     color: $medium-grey;
   }
 
-  .all-status .selected p {
-    color: $black;
+  .all-status {
+    .selected p {
+      color: $black;
+    }
+
+    .dropdown {
+      background-color: $white;
+    }
   }
 }
