@@ -8,6 +8,7 @@ const BoardCtx = React.createContext({
   showSidebar: Boolean,
   showTaskDetails: Boolean,
   showViewTask: Boolean,
+  changeTaskStatus: () => {},
   toggleActiveBoard: () => {},
   toggleEditBoardModal: () => {},
   toggleMobileMenu: () => {},
@@ -86,10 +87,54 @@ export const BoardCtxProvider = ({ children }) => {
     });
   }
 
+  function changeTaskStatus(newColumnId) {
+    let activeBoard = boards.find((board) => board.isActive);
+
+    let prevColumn = activeBoard.columns.find(
+      (column) => column.id === ids.column
+    );
+
+    let newColumn = activeBoard.columns.find(
+      (column) => column.id === newColumnId
+    );
+
+    if (prevColumn.id === newColumnId) {
+      toggleTaskDetailsModal();
+      return;
+    }
+
+    let task = prevColumn.tasks.find((task) => task.id === ids.task);
+
+    prevColumn = {
+      ...prevColumn,
+      tasks: prevColumn.tasks.filter((task) => task.id !== ids.task),
+    };
+
+    newColumn = { ...newColumn, tasks: newColumn.tasks.concat(task) };
+
+    setBoards((prevBoards) => {
+      return prevBoards.map((board) => {
+        if (board.isActive) {
+          return {
+            ...board,
+            columns: board.columns.map((column) => {
+              if (column.id === prevColumn.id) return (column = prevColumn);
+              if (column.id === newColumn.id) return (column = newColumn);
+              return { ...column };
+            }),
+          };
+        } else return { ...board };
+      });
+    });
+
+    toggleTaskDetailsModal();
+  }
+
   return (
     <BoardCtx.Provider
       value={{
         boards,
+        changeTaskStatus,
         showTaskDetails,
         showEditBoard,
         showSidebar,
