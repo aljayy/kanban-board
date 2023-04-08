@@ -5,13 +5,20 @@ import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
 import ActionTitle from "../../UI/ActionTitle";
 import BoardCtx from "../../../context/boardctx";
 import ChangeTaskStatus from "../ChangeTaskStatus/ChangeTaskStatus";
-import ThemeCtx from "../../../context/themectx";
-import OverlayPortal from "../../UI/OverlayPortal/OverlayPortal";
+import ItemActions from "../../UI/ItemActions/ItemActions";
 import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
+import OverlayPortal from "../../UI/OverlayPortal/OverlayPortal";
+import ThemeCtx from "../../../context/themectx";
 
 function ViewTask() {
-  const { toggleTaskDetailsModal, showTaskDetails, boards, ids, updateTask } =
-    useContext(BoardCtx);
+  const {
+    toggleTaskDetailsModal,
+    showTaskDetails,
+    boards,
+    ids,
+    updateTask,
+    setShowItemActions,
+  } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
   const transition = showTaskDetails ? "" : classes["hide-task"];
   const [task, setTask] = useState([]);
@@ -49,14 +56,28 @@ function ViewTask() {
   return (
     <OverlayPortal
       classes={`${classes.overlay} ${transition} ${classes[theme]}`}
-      onClick={toggleTaskDetailsModal}
+      onClick={() => {
+        toggleTaskDetailsModal();
+        setShowItemActions(false);
+      }}
     >
-      <ModalWrapper onClick={(e) => e.stopPropagation()}>
+      <ModalWrapper
+        onClick={(e) => {
+          e.stopPropagation();
+          setShowItemActions(false);
+        }}
+      >
         <div className={classes["task-title"]}>
           <ActionTitle title={task.title} />
-          <button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowItemActions(true);
+            }}
+          >
             <img src={ellipsis} alt="Ellipsis Icon" />
           </button>
+          <ItemActions />
         </div>
         <div className={classes["task-desc"]}>
           <p>{task.description}</p>
