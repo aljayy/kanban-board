@@ -5,6 +5,7 @@ import data from "../data.json";
 const BoardCtx = React.createContext({
   boards: [],
   showEditBoard: Boolean,
+  showItemActions: Boolean,
   showSidebar: Boolean,
   showTaskDetails: Boolean,
   showViewTask: Boolean,
@@ -16,6 +17,7 @@ const BoardCtx = React.createContext({
   toggleTaskDetailsModal: () => {},
   updateTask: () => {},
   setIds: () => {},
+  setShowItemActions: () => {},
   ids: [],
   viewMobileMenu: Boolean,
 });
@@ -24,6 +26,7 @@ export const BoardCtxProvider = ({ children }) => {
   const [boards, setBoards] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showEditBoard, setShowEditBoard] = useState(false);
+  const [showItemActions, setShowItemActions] = useState(false);
   const [showTaskDetails, setShowTaskDetails] = useState(false);
   const [viewMobileMenu, setViewMobileMenu] = useState(false);
   const [ids, setIds] = useState({});
@@ -146,6 +149,8 @@ export const BoardCtxProvider = ({ children }) => {
         toggleTaskDetailsModal,
         viewMobileMenu,
         setIds,
+        setShowItemActions,
+        showItemActions,
         ids,
         updateTask,
       }}
