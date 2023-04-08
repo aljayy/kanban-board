@@ -2,7 +2,6 @@
 @import "../../../styles/variables.module";
 
 .actions-wrapper {
-  background-color: $white;
   border-radius: 0.8rem;
   box-shadow: $box-shadow;
   padding: 1.6rem;
@@ -23,4 +22,12 @@
   .delete {
     color: $red;
   }
+}
+
+.dark {
+  background-color: $dark-mode-bg;
+}
+
+.light {
+  background-color: $white;
 }
