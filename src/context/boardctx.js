@@ -50,6 +50,7 @@ export const BoardCtxProvider = ({ children }) => {
   }
 
   function toggleActiveBoard(id) {
+    setIds({});
     setBoards((prevBoards) => {
       return prevBoards.map((board) => {
         if (board.id === id) return { ...board, isActive: true };
