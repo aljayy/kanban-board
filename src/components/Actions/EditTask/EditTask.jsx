@@ -36,6 +36,20 @@ function EditTask() {
     });
   }
 
+  function editSubtasks(value, index) {
+    setTask((prevTask) => {
+      return {
+        ...prevTask,
+        subtasks: prevTask.subtasks.map((subtask, i) => {
+          if (index === i) {
+            return { ...subtask, title: value };
+          }
+          return subtask;
+        }),
+      };
+    });
+  }
+
   return (
     <OverlayPortal
       classes={classes["edit-overlay"]}
@@ -71,6 +85,7 @@ function EditTask() {
               tags: task.subtasks,
               type: "text",
               action: "+Add New Subtask",
+              onChange: editSubtasks,
             }}
           />
         </div>
