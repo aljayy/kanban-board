@@ -7,6 +7,8 @@ function ActionInput({ input }) {
   const labelTheme = classes[theme + "-label"];
   const inputTheme = classes[theme + "-input"];
 
+  if (input === undefined) return;
+
   return (
     <>
       <label
@@ -18,9 +20,11 @@ function ActionInput({ input }) {
       <input
         className={`${classes["action-input"]} ${inputTheme}`}
         placeholder={input.placeholder}
+        defaultValue={input.value}
         type={input.type}
         id={input.id}
         name={input.id}
+        onChange={(e) => input.onChange(e.target.value)}
       />
     </>
   );
