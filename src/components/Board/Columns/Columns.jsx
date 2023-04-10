@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import classes from "./Columns.module.scss";
 import BoardCtx from "../../../context/boardctx";
 import Column from "../Column/Column";
-import ViewTask from "../../Actions/ViewTask/ViewTask";
 
 function Columns() {
   const { boards, showSidebar } = useContext(BoardCtx);
@@ -24,7 +23,6 @@ function Columns() {
           />
         );
       })}
-      <ViewTask />
     </div>
   );
 }
