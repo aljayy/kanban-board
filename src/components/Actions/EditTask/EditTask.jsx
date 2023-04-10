@@ -10,7 +10,7 @@ import ActionTagInput from "../../UI/ActionTagInput";
 import SmallButtonPrimary from "../../UI/Buttons/SmallButtonPrimary";
 
 function EditTask() {
-  const { ids, boards, toggleEditTaskModal } = useContext(BoardCtx);
+  const { ids, boards, toggleEditTaskModal, updateTask } = useContext(BoardCtx);
   const [task, setTask] = useState({});
 
   useEffect(() => {
@@ -23,6 +23,18 @@ function EditTask() {
   }, [boards, ids.column, ids.task]);
 
   if (Object.keys(task).length < 1) return;
+
+  function editTaskTitle(value) {
+    setTask((prevTask) => {
+      return { ...prevTask, title: value };
+    });
+  }
+
+  function editTaskDesc(value) {
+    setTask((prevTask) => {
+      return { ...prevTask, description: value };
+    });
+  }
 
   return (
     <OverlayPortal
@@ -40,6 +52,7 @@ function EditTask() {
               id: task.id,
               type: "text",
               value: task.title,
+              onChange: editTaskTitle,
             }}
           />
         </div>
@@ -48,6 +61,7 @@ function EditTask() {
           <textarea
             placeholder={"Shortly describe your task."}
             defaultValue={task.description}
+            onChange={(e) => editTaskDesc(e.target.value)}
           />
         </div>
         <div className={classes["action-tag"]}>
@@ -62,7 +76,10 @@ function EditTask() {
         </div>
         <ChangeTaskStatus />
         <div className={classes["action-btn"]}>
-          <SmallButtonPrimary text={"Save Changes"} />
+          <SmallButtonPrimary
+            text={"Save Changes"}
+            onClick={() => updateTask(task)}
+          />
         </div>
       </ModalWrapper>
     </OverlayPortal>
