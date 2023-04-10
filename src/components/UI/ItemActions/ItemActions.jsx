@@ -3,7 +3,7 @@ import classes from "./ItemActions.module.scss";
 import BoardCtx from "../../../context/boardctx";
 import ThemeCtx from "../../../context/themectx";
 
-function ItemActions() {
+function ItemActions({ editAction }) {
   const { showItemActions } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
 
@@ -14,7 +14,9 @@ function ItemActions() {
       className={`${classes["actions-wrapper"]} ${classes[theme]}`}
       onClick={(e) => e.stopPropagation()}
     >
-      <p className={classes.edit}>Edit Task</p>
+      <p className={classes.edit} onClick={editAction}>
+        Edit Task
+      </p>
       <p className={classes.delete}>Delete Task</p>
     </div>
   );
