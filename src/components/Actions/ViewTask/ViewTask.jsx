@@ -18,6 +18,7 @@ function ViewTask() {
     ids,
     updateTask,
     setShowItemActions,
+    toggleEditTaskModal,
   } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
   const transition = showTaskDetails ? "" : classes["hide-task"];
@@ -77,7 +78,7 @@ function ViewTask() {
           >
             <img src={ellipsis} alt="Ellipsis Icon" />
           </button>
-          <ItemActions />
+          <ItemActions editAction={toggleEditTaskModal} />
         </div>
         <div className={classes["task-desc"]}>
           <p>{task.description}</p>
