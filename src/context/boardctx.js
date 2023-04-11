@@ -83,7 +83,7 @@ export const BoardCtxProvider = ({ children }) => {
     setShowTaskDetails((prev) => !prev);
   }
 
-  function updateTask(updatedTask) {
+  function updateTask(updatedTask, newColumnId) {
     let boardIndex = boards.findIndex((board) => board.isActive);
     let columnIndex = boards[boardIndex].columns.findIndex(
       (column) => column.id === ids.column
@@ -99,6 +99,8 @@ export const BoardCtxProvider = ({ children }) => {
 
       return updatedBoards;
     });
+
+    if (newColumnId) changeTaskStatus(newColumnId);
   }
 
   function changeTaskStatus(newColumnId) {
