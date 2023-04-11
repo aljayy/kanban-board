@@ -23,6 +23,7 @@ function ActionTagInput({ data }) {
             <input
               type={data.type}
               defaultValue={tag.title}
+              placeholder={"e.g. Make Coffee"}
               onChange={(e) => data.onChange(e.target.value, index)}
             />
             <img src={deleteIcon} alt="Delete Icon" />
@@ -30,7 +31,7 @@ function ActionTagInput({ data }) {
         );
       })}
       <div className={classes["action-button"]}>
-        <ButtonSecondary text={data.action} />
+        <ButtonSecondary text={data.action} onClick={data.onAction} />
       </div>
     </>
   );
