@@ -11,11 +11,12 @@
   background-color: transparent;
   border: 1px solid $lines-opacity;
   border-radius: 0.4rem;
+  cursor: pointer;
   height: 4rem;
   padding: 0 0.8rem 0 1.6rem;
 
   &:active {
-    outline: 1px solid $main-purple;
+    outline: 1px solid $main-purple !important;
   }
 
   &:focus {
