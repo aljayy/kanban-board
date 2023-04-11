@@ -78,6 +78,15 @@ function EditTask() {
     });
   }
 
+  function deleteSubtask(index) {
+    setTask((prevTask) => {
+      return {
+        ...prevTask,
+        subtasks: prevTask.subtasks.filter((subtask, i) => i !== index),
+      };
+    });
+  }
+
   return (
     <OverlayPortal
       classes={`${classes["edit-overlay"]} ${classes[theme]}`}
@@ -113,8 +122,9 @@ function EditTask() {
               tags: task.subtasks,
               type: "text",
               action: "+Add New Subtask",
-              onChange: editSubtasks,
               onAction: addSubtask,
+              onChange: editSubtasks,
+              onDelete: deleteSubtask,
             }}
           />
         </div>
