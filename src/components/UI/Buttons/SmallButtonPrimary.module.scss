@@ -9,6 +9,7 @@
   //
   background-color: $main-purple;
   border-radius: 2rem;
+  cursor: pointer;
   height: 4rem;
   width: 100%;
 
@@ -18,5 +19,9 @@
     line-height: 2.3rem;
     font-size: 1.3rem;
     font-weight: 700;
+  }
+
+  &:hover {
+    background-color: $main-purple-hover;
   }
 }
