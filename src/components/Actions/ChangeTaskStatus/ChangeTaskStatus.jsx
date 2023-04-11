@@ -1,29 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./ChangeTaskStatus.module.scss";
 import chevron from "../../../assets/icon-chevron-down.svg";
-import BoardCtx from "../../../context/boardctx";
 import ThemeCtx from "../../../context/themectx";
 
-function ChangeTaskStatus() {
-  const [statuses, setStatuses] = useState();
+function ChangeTaskStatus({ statuses, setStatuses }) {
   const [showDropdown, setShowDropdown] = useState(false);
-  const { boards, ids, changeTaskStatus } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
   const visibilityToggle = showDropdown ? classes["show-element"] : "";
-
-  useEffect(() => {
-    let status = boards
-      .find((board) => board.isActive)
-      .columns.map((column) => {
-        return {
-          status: column.name,
-          id: column.id,
-          isCurrent: column.id === ids.column,
-        };
-      });
-
-    setStatuses(status);
-  }, [boards, ids]);
 
   function renderDropdown() {
     setShowDropdown(true);
@@ -31,6 +14,16 @@ function ChangeTaskStatus() {
 
   function hideDropdown() {
     setShowDropdown(false);
+  }
+
+  function changeCurrentStatus(id) {
+    setStatuses((prevStatuses) => {
+      return prevStatuses.map((status) => {
+        if (status.id === id) {
+          return { ...status, isCurrent: true };
+        } else return { ...status, isCurrent: false };
+      });
+    });
   }
 
   if (!statuses || statuses.length < 1) return;
@@ -51,7 +44,12 @@ function ChangeTaskStatus() {
         <div className={`${classes.dropdown} ${visibilityToggle}`}>
           {statuses.map((status) => {
             return (
-              <p key={status.id} onClick={() => changeTaskStatus(status.id)}>
+              <p
+                key={status.id}
+                onClick={() => {
+                  changeCurrentStatus(status.id);
+                }}
+              >
                 {status.status}
               </p>
             );
