@@ -5,13 +5,14 @@ import data from "../data.json";
 const BoardCtx = React.createContext({
   boards: [],
   showEditBoard: Boolean,
+  showEditTask: Boolean,
   showItemActions: Boolean,
   showSidebar: Boolean,
   showTaskDetails: Boolean,
-  showViewTask: Boolean,
   changeTaskStatus: () => {},
   toggleActiveBoard: () => {},
   toggleEditBoardModal: () => {},
+  toggleEditTaskModal: () => {},
   toggleMobileMenu: () => {},
   toggleSidebar: () => {},
   toggleTaskDetailsModal: () => {},
@@ -26,6 +27,7 @@ export const BoardCtxProvider = ({ children }) => {
   const [boards, setBoards] = useState([]);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showEditBoard, setShowEditBoard] = useState(false);
+  const [showEditTask, setShowEditTask] = useState(false);
   const [showItemActions, setShowItemActions] = useState(false);
   const [showTaskDetails, setShowTaskDetails] = useState(false);
   const [viewMobileMenu, setViewMobileMenu] = useState(false);
@@ -70,6 +72,13 @@ export const BoardCtxProvider = ({ children }) => {
     setShowEditBoard((prev) => !prev);
   }
 
+  function toggleEditTaskModal() {
+    if (showEditTask === false) {
+      setShowTaskDetails(false);
+      setShowEditTask(true);
+    } else setShowEditTask(false);
+  }
+
   function toggleTaskDetailsModal() {
     setShowTaskDetails((prev) => !prev);
   }
@@ -82,6 +91,7 @@ export const BoardCtxProvider = ({ children }) => {
     let taskIndex = boards[boardIndex].columns[columnIndex].tasks.findIndex(
       (task) => task.id === updatedTask.id
     );
+
     setBoards((prevBoards) => {
       let updatedBoards = [...prevBoards];
       updatedBoards[boardIndex].columns[columnIndex].tasks[taskIndex] =
@@ -103,7 +113,6 @@ export const BoardCtxProvider = ({ children }) => {
     );
 
     if (prevColumn.id === newColumnId) {
-      toggleTaskDetailsModal();
       return;
     }
 
@@ -116,6 +125,9 @@ export const BoardCtxProvider = ({ children }) => {
 
     newColumn = { ...newColumn, tasks: newColumn.tasks.concat(task) };
 
+    setIds((prevIds) => {
+      return { ...prevIds, column: newColumn.id };
+    });
     setBoards((prevBoards) => {
       return prevBoards.map((board) => {
         if (board.isActive) {
@@ -130,8 +142,6 @@ export const BoardCtxProvider = ({ children }) => {
         } else return { ...board };
       });
     });
-
-    toggleTaskDetailsModal();
   }
 
   return (
@@ -139,17 +149,20 @@ export const BoardCtxProvider = ({ children }) => {
       value={{
         boards,
         changeTaskStatus,
-        showTaskDetails,
         showEditBoard,
+        showEditTask,
         showSidebar,
+        showTaskDetails,
         toggleActiveBoard,
         toggleEditBoardModal,
+        toggleEditTaskModal,
         toggleMobileMenu,
         toggleSidebar,
         toggleTaskDetailsModal,
         viewMobileMenu,
         setIds,
         setShowItemActions,
+        setShowTaskDetails,
         showItemActions,
         ids,
         updateTask,
