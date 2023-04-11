@@ -4,7 +4,7 @@ import deleteIcon from "../../assets/icon-cross.svg";
 import ButtonSecondary from "./Buttons/ButtonSecondary";
 import ThemeCtx from "../../context/themectx";
 
-function ActionTagInput({ input }) {
+function ActionTagInput({ data }) {
   const { theme } = useContext(ThemeCtx);
   const labelTheme = classes[theme + "-tag-label"];
   const wrapperTheme = classes[theme + "-tag-wrapper"];
@@ -12,21 +12,25 @@ function ActionTagInput({ input }) {
   return (
     <>
       <label className={`${classes["action-tag-label"]} ${labelTheme}`}>
-        {input.label}
+        {data.label}
       </label>
-      {input.columns.map((column, index) => {
+      {data.tags.map((tag, index) => {
         return (
           <div
             className={`${classes["action-tag-wrapper"]} ${wrapperTheme}`}
             key={index}
           >
-            <input type={input.type} defaultValue={column.title} />
+            <input
+              type={data.type}
+              defaultValue={tag.title}
+              onChange={(e) => data.onChange(e.target.value, index)}
+            />
             <img src={deleteIcon} alt="Delete Icon" />
           </div>
         );
       })}
       <div className={classes["action-button"]}>
-        <ButtonSecondary text={input.action} />
+        <ButtonSecondary text={data.action} />
       </div>
     </>
   );
