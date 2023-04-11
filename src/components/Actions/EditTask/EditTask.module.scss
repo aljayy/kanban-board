@@ -34,7 +34,6 @@
 
     label {
       @include mixins.medium-body;
-      color: $medium-grey;
     }
 
     textarea {
@@ -57,5 +56,25 @@
 
   .action-btn {
     margin-top: 2.4rem;
+  }
+}
+
+.light .task-desc {
+  label {
+    color: $medium-grey;
+  }
+
+  textarea {
+    color: black;
+  }
+}
+
+.dark .task-desc {
+  label {
+    color: $white;
+  }
+
+  textarea {
+    color: $white;
   }
 }

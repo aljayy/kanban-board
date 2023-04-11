@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import classes from "./EditTask.module.scss";
-import OverlayPortal from "../../UI/OverlayPortal/OverlayPortal";
-import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
-import ActionTitle from "../../UI/ActionTitle";
 import ActionInput from "../../UI/ActionInput";
+import ActionTagInput from "../../UI/ActionTagInput";
+import ActionTitle from "../../UI/ActionTitle";
 import BoardCtx from "../../../context/boardctx";
 import ChangeTaskStatus from "../../Actions/ChangeTaskStatus/ChangeTaskStatus";
-import ActionTagInput from "../../UI/ActionTagInput";
+import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
+import OverlayPortal from "../../UI/OverlayPortal/OverlayPortal";
 import SmallButtonPrimary from "../../UI/Buttons/SmallButtonPrimary";
+import ThemeCtx from "../../../context/themectx";
 
 function EditTask() {
   const { ids, boards, toggleEditTaskModal, updateTask } = useContext(BoardCtx);
   const [task, setTask] = useState({});
+  const { theme } = useContext(ThemeCtx);
 
   useEffect(() => {
     let currentTask = boards
@@ -52,7 +54,7 @@ function EditTask() {
 
   return (
     <OverlayPortal
-      classes={classes["edit-overlay"]}
+      classes={`${classes["edit-overlay"]} ${classes[theme]}`}
       onClick={toggleEditTaskModal}
     >
       <ModalWrapper onClick={(e) => e.stopPropagation()}>
