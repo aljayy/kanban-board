@@ -26,7 +26,11 @@ function ActionTagInput({ data }) {
               placeholder={"e.g. Make Coffee"}
               onChange={(e) => data.onChange(e.target.value, index)}
             />
-            <img src={deleteIcon} alt="Delete Icon" />
+            <img
+              src={deleteIcon}
+              alt="Delete Icon"
+              onClick={() => data.onDelete(index)}
+            />
           </div>
         );
       })}
