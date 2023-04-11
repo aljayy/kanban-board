@@ -22,7 +22,7 @@ function EditTask() {
     setTask(currentTask);
   }, [boards, ids.column, ids.task]);
 
-  if (Object.keys(task).length < 1) return;
+  if (!task || Object.keys(task).length < 1) return;
 
   function editTaskTitle(value) {
     setTask((prevTask) => {
