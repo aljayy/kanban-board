@@ -69,6 +69,15 @@ function EditTask() {
     updateTask(task, newColumnId);
   }
 
+  function addSubtask() {
+    setTask((prevTask) => {
+      return {
+        ...prevTask,
+        subtasks: prevTask.subtasks.concat([{ title: "", isCompleted: false }]),
+      };
+    });
+  }
+
   return (
     <OverlayPortal
       classes={`${classes["edit-overlay"]} ${classes[theme]}`}
@@ -105,6 +114,7 @@ function EditTask() {
               type: "text",
               action: "+Add New Subtask",
               onChange: editSubtasks,
+              onAction: addSubtask,
             }}
           />
         </div>
