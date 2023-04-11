@@ -12,15 +12,27 @@ import ThemeCtx from "../../../context/themectx";
 
 function EditTask() {
   const { ids, boards, toggleEditTaskModal, updateTask } = useContext(BoardCtx);
+  const [statuses, setStatuses] = useState([]);
   const [task, setTask] = useState({});
   const { theme } = useContext(ThemeCtx);
 
   useEffect(() => {
+    let status = boards
+      .find((board) => board.isActive)
+      .columns.map((column) => {
+        return {
+          status: column.name,
+          id: column.id,
+          isCurrent: column.id === ids.column,
+        };
+      });
+
     let currentTask = boards
       .find((board) => board.isActive)
       .columns.find((column) => column.id === ids.column)
       .tasks.find((task) => task.id === ids.task);
 
+    setStatuses(status);
     setTask(currentTask);
   }, [boards, ids.column, ids.task]);
 
@@ -50,6 +62,11 @@ function EditTask() {
         }),
       };
     });
+  }
+
+  function saveChanges() {
+    let newColumnId = statuses.filter((status) => status.isCurrent)[0].id;
+    updateTask(task, newColumnId);
   }
 
   return (
@@ -91,12 +108,9 @@ function EditTask() {
             }}
           />
         </div>
-        <ChangeTaskStatus />
+        <ChangeTaskStatus statuses={statuses} setStatuses={setStatuses} />
         <div className={classes["action-btn"]}>
-          <SmallButtonPrimary
-            text={"Save Changes"}
-            onClick={() => updateTask(task)}
-          />
+          <SmallButtonPrimary text={"Save Changes"} onClick={saveChanges} />
         </div>
       </ModalWrapper>
     </OverlayPortal>

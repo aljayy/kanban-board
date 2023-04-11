@@ -9,6 +9,7 @@ import ItemActions from "../../UI/ItemActions/ItemActions";
 import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
 import OverlayPortal from "../../UI/OverlayPortal/OverlayPortal";
 import ThemeCtx from "../../../context/themectx";
+import SmallButtonPrimary from "../../UI/Buttons/SmallButtonPrimary";
 
 function ViewTask() {
   const {
@@ -22,14 +23,26 @@ function ViewTask() {
   } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
   const transition = showTaskDetails ? "" : classes["hide-task"];
+  const [statuses, setStatuses] = useState(undefined);
   const [task, setTask] = useState([]);
 
   useEffect(() => {
     if (Object.keys(ids).length > 2) {
+      let status = boards
+        .find((board) => board.isActive)
+        .columns.map((column) => {
+          return {
+            status: column.name,
+            id: column.id,
+            isCurrent: column.id === ids.column,
+          };
+        });
+
       let currentTask = boards
         .find((board) => board.isActive)
         .columns.find((column) => column.id === ids.column)
         .tasks.find((task) => task.id === ids.task);
+      setStatuses(status);
       setTask(currentTask);
     }
   }, [boards, ids]);
@@ -51,7 +64,11 @@ function ViewTask() {
     };
 
     setTask(updatedTask);
-    updateTask(updatedTask);
+  }
+
+  function saveChanges() {
+    let newColumnId = statuses.filter((status) => status.isCurrent)[0].id;
+    updateTask(task, newColumnId);
   }
 
   return (
@@ -104,7 +121,10 @@ function ViewTask() {
             );
           })}
         </div>
-        <ChangeTaskStatus />
+        <ChangeTaskStatus statuses={statuses} setStatuses={setStatuses} />
+        <div className={classes["action-btn"]}>
+          <SmallButtonPrimary text={"Save"} onClick={saveChanges} />
+        </div>
       </ModalWrapper>
     </OverlayPortal>
   );
