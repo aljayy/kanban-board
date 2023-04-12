@@ -14,6 +14,7 @@ function EditTask() {
   const { ids, boards, toggleEditTaskModal, updateTask } = useContext(BoardCtx);
   const [statuses, setStatuses] = useState([]);
   const [task, setTask] = useState({});
+  const [titleError, setTitleError] = useState(false);
   const { theme } = useContext(ThemeCtx);
 
   useEffect(() => {
@@ -64,11 +65,6 @@ function EditTask() {
     });
   }
 
-  function saveChanges() {
-    let newColumnId = statuses.filter((status) => status.isCurrent)[0].id;
-    updateTask(task, newColumnId);
-  }
-
   function addSubtask() {
     setTask((prevTask) => {
       return {
@@ -85,6 +81,32 @@ function EditTask() {
         subtasks: prevTask.subtasks.filter((subtask, i) => i !== index),
       };
     });
+  }
+
+  function saveChanges() {
+    if (task.title.trim() === "") {
+      setTitleError(true);
+      return;
+    } else setTitleError(false);
+
+    let subtaskErrors = task.subtasks.map((subtask) => {
+      if (subtask.title.trim() === "") {
+        return { ...subtask, hasError: true };
+      } else {
+        delete subtask.hasError;
+        return subtask;
+      }
+    });
+
+    if (subtaskErrors.some((subtask) => subtask.hasError)) {
+      setTask((prevTask) => {
+        return { ...prevTask, subtasks: subtaskErrors };
+      });
+      return;
+    }
+
+    let newColumnId = statuses.filter((status) => status.isCurrent)[0].id;
+    updateTask(task, newColumnId);
   }
 
   return (
@@ -104,6 +126,7 @@ function EditTask() {
               type: "text",
               value: task.title,
               onChange: editTaskTitle,
+              error: titleError,
             }}
           />
         </div>
