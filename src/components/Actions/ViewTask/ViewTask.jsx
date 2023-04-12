@@ -95,7 +95,11 @@ function ViewTask() {
           >
             <img src={ellipsis} alt="Ellipsis Icon" />
           </button>
-          <ItemActions editAction={toggleEditTaskModal} />
+          <ItemActions
+            editAction={toggleEditTaskModal}
+            editText={"Edit Task"}
+            deleteText={"Delete Task"}
+          />
         </div>
         <div className={classes["task-desc"]}>
           <p>{task.description}</p>
