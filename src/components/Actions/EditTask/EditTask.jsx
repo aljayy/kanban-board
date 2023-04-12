@@ -133,7 +133,9 @@ function EditTask() {
         <div className={classes["task-desc"]}>
           <label>Description</label>
           <textarea
-            placeholder={"Shortly describe your task."}
+            placeholder={`e.g. It’s always good to take a break. This 
+15 minute break will  recharge the batteries 
+a little.`}
             defaultValue={task.description}
             onChange={(e) => editTaskDesc(e.target.value)}
           />
