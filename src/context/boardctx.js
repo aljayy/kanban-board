@@ -75,6 +75,7 @@ export const BoardCtxProvider = ({ children }) => {
   function toggleEditTaskModal() {
     if (showEditTask === false) {
       setShowTaskDetails(false);
+      setShowItemActions(false);
       setShowEditTask(true);
     } else setShowEditTask(false);
   }
