@@ -17,7 +17,9 @@ function ActionTagInput({ data }) {
       {data.tags.map((tag, index) => {
         return (
           <div
-            className={`${classes["action-tag-wrapper"]} ${wrapperTheme}`}
+            className={`${classes["action-tag-wrapper"]} ${wrapperTheme} ${
+              tag.hasError ? classes.error : ""
+            }`}
             key={index}
           >
             <input
@@ -26,6 +28,7 @@ function ActionTagInput({ data }) {
               placeholder={"e.g. Make Coffee"}
               onChange={(e) => data.onChange(e.target.value, index)}
             />
+            <p className={classes["error-message"]}>Can't be empty</p>
             <img
               src={deleteIcon}
               alt="Delete Icon"
