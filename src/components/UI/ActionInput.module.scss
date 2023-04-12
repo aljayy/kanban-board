@@ -28,6 +28,23 @@
   }
 }
 
+.input-error {
+  border: 1px solid $red !important;
+}
+
+.hide-error {
+  display: none;
+}
+
+.show-error {
+  @include mixins.large-body;
+  display: block !important;
+  position: absolute;
+  color: red;
+  right: 1rem;
+  bottom: 1rem;
+}
+
 .light-label {
   color: $medium-grey;
 }

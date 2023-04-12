@@ -9,6 +9,12 @@ function ActionInput({ input }) {
 
   if (input === undefined) return;
 
+  const errorClass = input.error
+    ? classes["show-error"]
+    : classes["hide-error"];
+
+  const inputError = input.error ? classes["input-error"] : "";
+
   return (
     <>
       <label
@@ -18,7 +24,7 @@ function ActionInput({ input }) {
         {input.label}
       </label>
       <input
-        className={`${classes["action-input"]} ${inputTheme}`}
+        className={`${classes["action-input"]} ${inputTheme} ${inputError}`}
         placeholder={input.placeholder}
         defaultValue={input.value}
         type={input.type}
@@ -26,6 +32,7 @@ function ActionInput({ input }) {
         name={input.id}
         onChange={(e) => input.onChange(e.target.value)}
       />
+      <p className={errorClass}>Can't be empty</p>
     </>
   );
 }
