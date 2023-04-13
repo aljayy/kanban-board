@@ -5,6 +5,7 @@ import data from "../data.json";
 const BoardCtx = React.createContext({
   boards: [],
   deleteTask: () => {},
+  showAddTask: () => {},
   showEditBoard: Boolean,
   showEditTask: Boolean,
   showItemActions: Boolean,
@@ -12,6 +13,7 @@ const BoardCtx = React.createContext({
   showTaskDetails: Boolean,
   changeTaskStatus: () => {},
   toggleActiveBoard: () => {},
+  toggleAddTaskModal: () => {},
   toggleEditBoardModal: () => {},
   toggleEditTaskModal: () => {},
   toggleMobileMenu: () => {},
@@ -28,11 +30,12 @@ const BoardCtx = React.createContext({
 
 export const BoardCtxProvider = ({ children }) => {
   const [boards, setBoards] = useState([]);
+  const [showAddTask, setShowAddTask] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(false);
   const [showEditBoard, setShowEditBoard] = useState(false);
   const [showEditTask, setShowEditTask] = useState(false);
   const [showItemActions, setShowItemActions] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
   const [showTaskDetails, setShowTaskDetails] = useState(false);
   const [viewMobileMenu, setViewMobileMenu] = useState(false);
   const [ids, setIds] = useState({});
@@ -66,6 +69,10 @@ export const BoardCtxProvider = ({ children }) => {
         else return { ...board, isActive: false };
       });
     });
+  }
+
+  function toggleAddTaskModal() {
+    setShowAddTask((prev) => !prev);
   }
 
   function toggleSidebar() {
@@ -188,11 +195,13 @@ export const BoardCtxProvider = ({ children }) => {
         boards,
         changeTaskStatus,
         deleteTask,
+        showAddTask,
         showEditBoard,
         showEditTask,
         showSidebar,
         showTaskDetails,
         toggleActiveBoard,
+        toggleAddTaskModal,
         toggleEditBoardModal,
         toggleEditTaskModal,
         toggleMobileMenu,
