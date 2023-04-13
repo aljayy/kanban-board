@@ -1,0 +1,26 @@
+@use "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.btn-destructive {
+  // Remove default button styling
+  border: none;
+  outline: none;
+  background: transparent;
+  //
+  border-radius: 2rem;
+  background-color: $red;
+  cursor: pointer;
+  height: 4rem;
+  width: 100%;
+
+  &:hover {
+    background-color: $red-hover;
+  }
+
+  p {
+    color: $white;
+    line-height: 2.3rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+}
