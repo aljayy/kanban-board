@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import classes from "./AddTask.module.scss";
 import OverlayPortal from "../../UI/OverlayPortal/OverlayPortal";
 import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
@@ -11,7 +12,7 @@ import ActionDesc from "../../UI/ActionDesc";
 import BoardCtx from "../../../context/boardctx";
 
 function AddTask() {
-  const { boards } = useContext(BoardCtx);
+  const { boards, addTask, toggleAddTaskModal } = useContext(BoardCtx);
   const [task, setTask] = useState({});
   const [statuses, setStatuses] = useState([]);
 
@@ -29,6 +30,7 @@ function AddTask() {
     setStatuses(status);
     setTask({
       title: "",
+      id: uuidv4(),
       description: "",
       status: status[0].status,
       subtasks: [
@@ -83,8 +85,11 @@ function AddTask() {
   }
 
   return (
-    <OverlayPortal classes={classes["add-task-overlay"]}>
-      <ModalWrapper>
+    <OverlayPortal
+      classes={classes["add-task-overlay"]}
+      onClick={toggleAddTaskModal}
+    >
+      <ModalWrapper onClick={(e) => e.stopPropagation()}>
         <div className={classes["action-title"]}>
           <ActionTitle title={"Add New Task"} />
         </div>
@@ -119,7 +124,13 @@ function AddTask() {
         <div className={classes.statuses}>
           <ChangeTaskStatus statuses={statuses} setStatuses={setStatuses} />
         </div>
-        <SmallButtonPrimary text={"Create Task"} />
+        <SmallButtonPrimary
+          text={"Create Task"}
+          onClick={() => {
+            addTask(task, statuses.filter((status) => status.isCurrent)[0].id);
+            toggleAddTaskModal();
+          }}
+        />
       </ModalWrapper>
     </OverlayPortal>
   );
