@@ -1,0 +1,41 @@
+@use "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.add-task-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.5s ease;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  z-index: 4;
+
+  .action-title {
+    margin-bottom: 2.4rem;
+  }
+
+  .task-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .task-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .subtasks {
+    margin-bottom: 2.4rem;
+  }
+
+  .statuses {
+    margin-bottom: 2.4rem;
+  }
+}
