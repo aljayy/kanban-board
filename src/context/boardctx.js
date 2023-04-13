@@ -4,6 +4,7 @@ import data from "../data.json";
 
 const BoardCtx = React.createContext({
   boards: [],
+  deleteTask: () => {},
   showEditBoard: Boolean,
   showEditTask: Boolean,
   showItemActions: Boolean,
@@ -158,11 +159,35 @@ export const BoardCtxProvider = ({ children }) => {
     });
   }
 
+  function deleteTask(taskId) {
+    let newTasks = boards
+      .find((board) => board.isActive)
+      .columns.find((column) => column.id === ids.column)
+      .tasks.filter((task) => task.id !== taskId);
+
+    setBoards((prevBoards) => {
+      return prevBoards.map((board) => {
+        if (board.isActive) {
+          return {
+            ...board,
+            columns: board.columns.map((column) => {
+              if (column.id === ids.column) {
+                return { ...column, tasks: newTasks };
+              } else return { ...column };
+            }),
+          };
+        } else return { ...board };
+      });
+    });
+    toggleDeleteItemModal();
+  }
+
   return (
     <BoardCtx.Provider
       value={{
         boards,
         changeTaskStatus,
+        deleteTask,
         showEditBoard,
         showEditTask,
         showSidebar,
