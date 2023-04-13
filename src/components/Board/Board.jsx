@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import Columns from "./Columns/Columns";
 import EmptyBoard from "./EmptyBoard/EmptyBoard";
-import EditBoard from "../Actions/EditBoard/EditBoard";
+import BoardCtx from "../../context/boardctx";
 
 function Board() {
+  const { boards } = useContext(BoardCtx);
+
   return (
     <>
-      <EmptyBoard />
-      <EditBoard />
+      {!boards && <EmptyBoard />}
+      {boards && <Columns />}
     </>
   );
 }
