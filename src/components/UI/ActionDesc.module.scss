@@ -1,0 +1,44 @@
+@use "../../styles/mixins.module";
+@import "../../styles/variables.module";
+
+label {
+  @include mixins.medium-body;
+}
+
+textarea {
+  @include mixins.large-body;
+  background-color: transparent;
+  border: 1px solid $lines-opacity;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  padding: 0.8rem 1.6rem 0 1.5rem;
+  height: 11.2rem;
+
+  &:active {
+    outline: 1px solid $main-purple !important;
+  }
+
+  &:focus {
+    outline: transparent;
+  }
+
+  &::placeholder {
+    opacity: 0.25;
+  }
+}
+
+.light {
+  color: $medium-grey;
+}
+
+.light-desc {
+  color: $black;
+}
+
+.dark {
+  color: $white;
+}
+
+.dark-desc {
+  color: $white;
+}
