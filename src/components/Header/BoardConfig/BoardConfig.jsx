@@ -7,7 +7,7 @@ import ThemeCtx from "../../../context/themectx";
 
 function BoardConfig() {
   const { theme } = useContext(ThemeCtx);
-  const { boards, showSidebar } = useContext(BoardCtx);
+  const { boards, showSidebar, toggleAddTaskModal } = useContext(BoardCtx);
 
   const paddingTransition = showSidebar ? classes["add-padding"] : "";
 
@@ -25,7 +25,7 @@ function BoardConfig() {
       <div className={`${classes["board-details"]} ${paddingTransition}`}>
         <h2 className={classes[theme]}>{activeBoard.name}</h2>
         <div className={classes["board-configuration"]}>
-          <button>
+          <button onClick={toggleAddTaskModal}>
             <p>+ Add New Task</p>
           </button>
           <div>
