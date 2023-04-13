@@ -7,7 +7,8 @@ import ButtonSecondary from "../../UI/Buttons/ButtonSecondary";
 import ButtonDestructive from "../../UI/Buttons/ButtonDestructive";
 
 function DeleteTask() {
-  const { toggleDeleteItemModal, ids, boards } = useContext(BoardCtx);
+  const { toggleDeleteItemModal, ids, boards, deleteTask } =
+    useContext(BoardCtx);
   const [task, setTask] = useState();
 
   useEffect(() => {
@@ -32,7 +33,7 @@ function DeleteTask() {
           className={classes.warning}
         >{`Are you sure you want to delete the '${task.title}' task and its subtasks? This action cannot be reversed.`}</p>
         <div className={classes["action-btns"]}>
-          <ButtonDestructive />
+          <ButtonDestructive onClick={() => deleteTask(task.id)} />
           <ButtonSecondary text={"Cancel"} />
         </div>
       </ModalWrapper>
