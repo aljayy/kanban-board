@@ -34,7 +34,7 @@ function DeleteTask() {
         >{`Are you sure you want to delete the '${task.title}' task and its subtasks? This action cannot be reversed.`}</p>
         <div className={classes["action-btns"]}>
           <ButtonDestructive onClick={() => deleteTask(task.id)} />
-          <ButtonSecondary text={"Cancel"} />
+          <ButtonSecondary text={"Cancel"} onClick={toggleDeleteItemModal} />
         </div>
       </ModalWrapper>
     </OverlayPortal>
