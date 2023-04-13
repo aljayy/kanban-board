@@ -19,12 +19,15 @@ const BoardCtx = React.createContext({
   updateTask: () => {},
   setIds: () => {},
   setShowItemActions: () => {},
+  showDeleteModal: Boolean,
+  toggleDeleteItemModal: () => {},
   ids: [],
   viewMobileMenu: Boolean,
 });
 
 export const BoardCtxProvider = ({ children }) => {
   const [boards, setBoards] = useState([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showEditBoard, setShowEditBoard] = useState(false);
   const [showEditTask, setShowEditTask] = useState(false);
@@ -78,6 +81,14 @@ export const BoardCtxProvider = ({ children }) => {
       setShowItemActions(false);
       setShowEditTask(true);
     } else setShowEditTask(false);
+  }
+
+  function toggleDeleteItemModal() {
+    if (showDeleteModal === false) {
+      setShowTaskDetails(false);
+      setShowItemActions(false);
+      setShowDeleteModal(true);
+    } else setShowDeleteModal(false);
   }
 
   function toggleTaskDetailsModal() {
@@ -166,6 +177,8 @@ export const BoardCtxProvider = ({ children }) => {
         setIds,
         setShowItemActions,
         setShowTaskDetails,
+        showDeleteModal,
+        toggleDeleteItemModal,
         showItemActions,
         ids,
         updateTask,
