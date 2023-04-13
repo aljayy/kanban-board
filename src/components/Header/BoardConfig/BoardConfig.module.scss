@@ -39,6 +39,7 @@
   .board-configuration {
     display: flex;
     align-items: center;
+    cursor: pointer;
     height: 100%;
     gap: 2.4rem;
 
@@ -51,6 +52,7 @@
       //
       background-color: $main-purple;
       border-radius: 2.4rem;
+      cursor: pointer;
       height: 100%;
       width: 16.4rem;
 
