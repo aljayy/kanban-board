@@ -39,7 +39,7 @@ function AllBoards() {
           </li>
         );
       })}
-      <li className={classes["new-board"]}>
+      <li className={`${classes["new-board"]} ${classes[theme]}`}>
         <button>
           <img src={newBoardIcon} alt="Board Icon" />
           <p>+ Create New Board</p>
