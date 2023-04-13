@@ -9,7 +9,8 @@ import MobileMenuModal from "./MobileMenuModal";
 import ThemeCtx from "../../../context/themectx";
 
 function MobileHeader() {
-  const { boards, viewMobileMenu, toggleMobileMenu } = useContext(BoardCtx);
+  const { boards, viewMobileMenu, toggleAddTaskModal, toggleMobileMenu } =
+    useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
 
   if (boards.length < 1) return;
@@ -38,7 +39,7 @@ function MobileHeader() {
         />
       </div>
       <div className={classes["board-actions"]}>
-        <button className={classes["add-task"]} disabled={true}>
+        <button className={classes["add-task"]} onClick={toggleAddTaskModal}>
           <img src={cross} alt={"Add task icon"} />
         </button>
         <img src={ellipsis} alt={"Ellipsis icon"} />
