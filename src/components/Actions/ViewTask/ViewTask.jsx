@@ -18,6 +18,7 @@ function ViewTask() {
     boards,
     ids,
     updateTask,
+    toggleDeleteItemModal,
     setShowItemActions,
     toggleEditTaskModal,
   } = useContext(BoardCtx);
@@ -98,6 +99,7 @@ function ViewTask() {
           <ItemActions
             editAction={toggleEditTaskModal}
             editText={"Edit Task"}
+            deleteAction={toggleDeleteItemModal}
             deleteText={"Delete Task"}
           />
         </div>
