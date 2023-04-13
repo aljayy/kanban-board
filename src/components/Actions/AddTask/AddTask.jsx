@@ -14,6 +14,7 @@ import BoardCtx from "../../../context/boardctx";
 function AddTask() {
   const { boards, addTask, toggleAddTaskModal } = useContext(BoardCtx);
   const [task, setTask] = useState({});
+  const [titleError, setTitleError] = useState(false);
   const [statuses, setStatuses] = useState([]);
 
   useEffect(() => {
@@ -84,6 +85,32 @@ function AddTask() {
     });
   }
 
+  function saveTask() {
+    if (task.title.trim() === "") {
+      setTitleError(true);
+      return;
+    } else setTitleError(false);
+
+    let subtaskErrors = task.subtasks.map((subtask) => {
+      if (subtask.title.trim() === "") {
+        return { ...subtask, hasError: true };
+      } else {
+        delete subtask.hasError;
+        return subtask;
+      }
+    });
+
+    if (subtaskErrors.some((subtask) => subtask.hasError)) {
+      setTask((prevTask) => {
+        return { ...prevTask, subtasks: subtaskErrors };
+      });
+      return;
+    }
+
+    let newColumnId = statuses.filter((status) => status.isCurrent)[0].id;
+    addTask(task, newColumnId);
+  }
+
   return (
     <OverlayPortal
       classes={classes["add-task-overlay"]}
@@ -96,6 +123,7 @@ function AddTask() {
         <div className={classes["task-title"]}>
           <ActionInput
             input={{
+              error: titleError,
               label: "Title",
               placeholder: "e.g. Refactor legacy code",
               type: "text",
@@ -124,13 +152,7 @@ function AddTask() {
         <div className={classes.statuses}>
           <ChangeTaskStatus statuses={statuses} setStatuses={setStatuses} />
         </div>
-        <SmallButtonPrimary
-          text={"Create Task"}
-          onClick={() => {
-            addTask(task, statuses.filter((status) => status.isCurrent)[0].id);
-            toggleAddTaskModal();
-          }}
-        />
+        <SmallButtonPrimary text={"Create Task"} onClick={saveTask} />
       </ModalWrapper>
     </OverlayPortal>
   );
