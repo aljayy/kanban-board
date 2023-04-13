@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styles from "./OverlayPortal.module.scss";
 import ReactDOM from "react-dom";
 
 function OverlayPortal({ classes, onClick, children }) {
@@ -20,7 +21,7 @@ function OverlayPortal({ classes, onClick, children }) {
     <>
       {ReactDOM.createPortal(
         <div
-          className={classes}
+          className={`${classes} ${styles}`}
           onClick={onClick}
           style={{
             top: `${position.top}px`,
