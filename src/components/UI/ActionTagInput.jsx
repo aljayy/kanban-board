@@ -9,6 +9,8 @@ function ActionTagInput({ data }) {
   const labelTheme = classes[theme + "-tag-label"];
   const wrapperTheme = classes[theme + "-tag-wrapper"];
 
+  if (!data.tags) return;
+
   return (
     <>
       <label className={`${classes["action-tag-label"]} ${labelTheme}`}>
