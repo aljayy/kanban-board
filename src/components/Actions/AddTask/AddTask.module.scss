@@ -12,12 +12,14 @@
   display: flex;
   align-items: center;
   z-index: 4;
+  padding-top: 10rem;
 
   .action-title {
     margin-bottom: 2.4rem;
   }
 
   .task-title {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
