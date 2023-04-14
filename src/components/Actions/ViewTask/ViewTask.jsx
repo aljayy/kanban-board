@@ -20,6 +20,7 @@ function ViewTask() {
     updateTask,
     toggleDeleteItemModal,
     setShowItemActions,
+    showItemActions,
     toggleEditTaskModal,
   } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
@@ -86,7 +87,10 @@ function ViewTask() {
           setShowItemActions(false);
         }}
       >
-        <div className={classes["task-title"]}>
+        <div
+          className={classes["task-title"]}
+          onClick={() => setShowItemActions(false)}
+        >
           <ActionTitle title={task.title} />
           <button
             onClick={(e) => {
@@ -96,12 +100,16 @@ function ViewTask() {
           >
             <img src={ellipsis} alt="Ellipsis Icon" />
           </button>
-          <ItemActions
-            editAction={toggleEditTaskModal}
-            editText={"Edit Task"}
-            deleteAction={toggleDeleteItemModal}
-            deleteText={"Delete Task"}
-          />
+          {showItemActions && (
+            <ItemActions
+              editAction={toggleEditTaskModal}
+              editText={"Edit Task"}
+              deleteAction={toggleDeleteItemModal}
+              deleteText={"Delete Task"}
+              top={`100%`}
+              right={`-2rem`}
+            />
+          )}
         </div>
         <div className={classes["task-desc"]}>
           <p>{task.description}</p>
