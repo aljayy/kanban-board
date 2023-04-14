@@ -9,9 +9,7 @@ function ActionDesc({ taskDesc }) {
     <>
       <label className={`${classes} ${classes[theme]}`}>Description</label>
       <textarea
-        placeholder={`e.g. It’s always good to take a break. This 
-15 minute break will  recharge the batteries 
-a little.`}
+        placeholder={`e.g. It’s always good to take a break. This 15 minute break will  recharge the batteries a little.`}
         className={classes[`${theme}-desc`]}
         defaultValue={taskDesc.description}
         onChange={(e) => taskDesc.onChange(e.target.value)}
