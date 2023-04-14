@@ -15,9 +15,10 @@ function MobileHeader() {
     viewMobileMenu,
     toggleAddTaskModal,
     toggleMobileMenu,
-    setShowItemActions,
     toggleEditBoardModal,
     toggleDeleteBoard,
+    showBoardItemActions,
+    toggleBoardItemActions,
   } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
 
@@ -53,22 +54,24 @@ function MobileHeader() {
         <img
           src={ellipsis}
           alt={"Ellipsis icon"}
-          onClick={() => setShowItemActions(true)}
+          onClick={toggleBoardItemActions}
         />
-        <ItemActions
-          top={`90%`}
-          right={`0.5rem`}
-          deleteAction={() => {
-            toggleDeleteBoard();
-            setShowItemActions(false);
-          }}
-          deleteText={"Delete Board"}
-          editText={"Edit Board"}
-          editAction={() => {
-            toggleEditBoardModal();
-            setShowItemActions(false);
-          }}
-        />
+        {showBoardItemActions && (
+          <ItemActions
+            top={`90%`}
+            right={`0.5rem`}
+            deleteAction={() => {
+              toggleDeleteBoard();
+              toggleBoardItemActions();
+            }}
+            deleteText={"Delete Board"}
+            editText={"Edit Board"}
+            editAction={() => {
+              toggleEditBoardModal();
+              toggleBoardItemActions();
+            }}
+          />
+        )}
       </div>
       <MobileMenuModal />
     </>
