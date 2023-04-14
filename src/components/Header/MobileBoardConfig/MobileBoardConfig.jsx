@@ -7,10 +7,18 @@ import path from "../../../assets/icon-chevron-down.svg";
 import BoardCtx from "../../../context/boardctx";
 import MobileMenuModal from "./MobileMenuModal";
 import ThemeCtx from "../../../context/themectx";
+import ItemActions from "../../UI/ItemActions/ItemActions";
 
 function MobileHeader() {
-  const { boards, viewMobileMenu, toggleAddTaskModal, toggleMobileMenu } =
-    useContext(BoardCtx);
+  const {
+    boards,
+    viewMobileMenu,
+    toggleAddTaskModal,
+    toggleMobileMenu,
+    setShowItemActions,
+    toggleEditBoardModal,
+    toggleDeleteBoard,
+  } = useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
 
   if (boards.length < 1) return;
@@ -42,7 +50,25 @@ function MobileHeader() {
         <button className={classes["add-task"]} onClick={toggleAddTaskModal}>
           <img src={cross} alt={"Add task icon"} />
         </button>
-        <img src={ellipsis} alt={"Ellipsis icon"} />
+        <img
+          src={ellipsis}
+          alt={"Ellipsis icon"}
+          onClick={() => setShowItemActions(true)}
+        />
+        <ItemActions
+          top={`90%`}
+          right={`0.5rem`}
+          deleteAction={() => {
+            toggleDeleteBoard();
+            setShowItemActions(false);
+          }}
+          deleteText={"Delete Board"}
+          editText={"Edit Board"}
+          editAction={() => {
+            toggleEditBoardModal();
+            setShowItemActions(false);
+          }}
+        />
       </div>
       <MobileMenuModal />
     </>
