@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import data from "../data.json";
 
 const BoardCtx = React.createContext({
+  addTask: () => {},
   boards: [],
   deleteTask: () => {},
   showAddTask: () => {},
@@ -103,6 +104,23 @@ export const BoardCtxProvider = ({ children }) => {
     setShowTaskDetails((prev) => !prev);
   }
 
+  function addTask(task, columnId) {
+    setBoards((prevBoards) => {
+      return prevBoards.map((board) => {
+        if (board.isActive) {
+          return {
+            ...board,
+            columns: board.columns.map((column) => {
+              if (column.id === columnId) {
+                return { ...column, tasks: column.tasks.concat(task) };
+              } else return { ...column };
+            }),
+          };
+        } else return { ...board };
+      });
+    });
+  }
+
   function updateTask(updatedTask, newColumnId) {
     let boardIndex = boards.findIndex((board) => board.isActive);
     let columnIndex = boards[boardIndex].columns.findIndex(
@@ -192,6 +210,7 @@ export const BoardCtxProvider = ({ children }) => {
   return (
     <BoardCtx.Provider
       value={{
+        addTask,
         boards,
         changeTaskStatus,
         deleteTask,
