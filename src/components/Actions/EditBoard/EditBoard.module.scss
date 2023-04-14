@@ -14,10 +14,15 @@
   align-items: center;
   z-index: 3;
 
+  .action-title {
+    margin-bottom: 2.4rem;
+  }
+
   .board-name-wrapper {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
+    position: relative;
   }
 
   .tag-input-wrapper {
