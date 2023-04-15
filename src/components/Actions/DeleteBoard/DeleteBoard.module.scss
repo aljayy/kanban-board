@@ -1,0 +1,39 @@
+@use "../../../styles/mixins.module";
+@import "../../../styles/variables.module";
+
+.delete-board-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.5s ease;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  z-index: 3;
+
+  .modal-title {
+    @include mixins.large-heading;
+    color: $red;
+    margin-bottom: 2.4rem;
+  }
+
+  .warning {
+    @include mixins.large-body;
+    color: $medium-grey;
+    margin-bottom: 2.4rem;
+  }
+
+  .action-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .delete-overlay .action-btns {
+    flex-direction: row;
+    margin-bottom: 0.8rem;
+  }
+}
