@@ -27,6 +27,7 @@ function ActionTagInput({ data }) {
             <input
               type={data.type}
               defaultValue={tag.title || tag.name}
+              value={tag.title || tag.name}
               placeholder={"e.g. Make Coffee"}
               onChange={(e) => data.onChange(e.target.value, index)}
             />
@@ -34,7 +35,7 @@ function ActionTagInput({ data }) {
             <img
               src={deleteIcon}
               alt="Delete Icon"
-              onClick={() => data.onDelete(index)}
+              onClick={() => data.onDelete(index, tag.id)}
             />
           </div>
         );
