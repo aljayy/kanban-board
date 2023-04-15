@@ -23,8 +23,12 @@ const BoardCtx = React.createContext({
   updateTask: () => {},
   setIds: () => {},
   setShowItemActions: () => {},
+  showDeleteBoard: Boolean,
+  toggleDeleteBoard: () => {},
   showDeleteModal: Boolean,
   toggleDeleteItemModal: () => {},
+  showBoardItemActions: Boolean,
+  toggleBoardItemActions: () => {},
   ids: [],
   viewMobileMenu: Boolean,
 });
@@ -33,9 +37,11 @@ export const BoardCtxProvider = ({ children }) => {
   const [boards, setBoards] = useState([]);
   const [showAddTask, setShowAddTask] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDeleteBoard, setShowDeleteBoard] = useState(false);
   const [showEditBoard, setShowEditBoard] = useState(false);
   const [showEditTask, setShowEditTask] = useState(false);
   const [showItemActions, setShowItemActions] = useState(false);
+  const [showBoardItemActions, setBoardItemActions] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const [showTaskDetails, setShowTaskDetails] = useState(false);
   const [viewMobileMenu, setViewMobileMenu] = useState(false);
@@ -60,6 +66,10 @@ export const BoardCtxProvider = ({ children }) => {
 
   function toggleMobileMenu() {
     setViewMobileMenu((prev) => !prev);
+  }
+
+  function toggleBoardItemActions() {
+    setBoardItemActions((prev) => !prev);
   }
 
   function toggleActiveBoard(id) {
@@ -98,6 +108,10 @@ export const BoardCtxProvider = ({ children }) => {
       setShowItemActions(false);
       setShowDeleteModal(true);
     } else setShowDeleteModal(false);
+  }
+
+  function toggleDeleteBoard() {
+    setShowDeleteBoard((prev) => !prev);
   }
 
   function toggleTaskDetailsModal() {
@@ -207,12 +221,23 @@ export const BoardCtxProvider = ({ children }) => {
     toggleDeleteItemModal();
   }
 
+  function changeBoardDetails(newBoard) {
+    setBoards((prevBoards) => {
+      return prevBoards.map((board) => {
+        if (board.id === newBoard.id) {
+          return (board = newBoard);
+        } else return board;
+      });
+    });
+  }
+
   return (
     <BoardCtx.Provider
       value={{
         addTask,
         boards,
         changeTaskStatus,
+        changeBoardDetails,
         deleteTask,
         showAddTask,
         showEditBoard,
@@ -230,8 +255,12 @@ export const BoardCtxProvider = ({ children }) => {
         setIds,
         setShowItemActions,
         setShowTaskDetails,
+        showDeleteBoard,
+        toggleDeleteBoard,
         showDeleteModal,
         toggleDeleteItemModal,
+        showBoardItemActions,
+        toggleBoardItemActions,
         showItemActions,
         ids,
         updateTask,
