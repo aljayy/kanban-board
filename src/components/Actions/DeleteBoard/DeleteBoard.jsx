@@ -8,7 +8,7 @@ import ButtonSecondary from "../../UI/Buttons/ButtonSecondary";
 
 function DeleteBoard() {
   const [board, setBoard] = useState();
-  const { boards, toggleDeleteBoard } = useContext(BoardCtx);
+  const { boards, toggleDeleteBoard, deleteBoard } = useContext(BoardCtx);
 
   useEffect(() => {
     let currentBoard = boards.find((board) => board.isActive);
@@ -29,8 +29,13 @@ function DeleteBoard() {
           className={classes.warning}
         >{`Are you sure you want to delete the '${board.name}' board? This action will remove all columns and tasks and cannot be reversed.`}</p>
         <div className={classes["action-btns"]}>
-          <ButtonDestructive onClick={() => "hello"} />
-          <ButtonSecondary text={"Cancel"} />
+          <ButtonDestructive
+            onClick={() => {
+              deleteBoard(board.id);
+              toggleDeleteBoard();
+            }}
+          />
+          <ButtonSecondary text={"Cancel"} onClick={toggleDeleteBoard} />
         </div>
       </ModalWrapper>
     </OverlayPortal>
