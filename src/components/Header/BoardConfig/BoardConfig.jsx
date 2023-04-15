@@ -3,11 +3,20 @@ import classes from "./BoardConfig.module.scss";
 import ellipsis from "../../../assets/icon-vertical-ellipsis.svg";
 import Sidebar from "../../Sidebar/Sidebar";
 import BoardCtx from "../../../context/boardctx";
+import ItemActions from "../../UI/ItemActions/ItemActions";
 import ThemeCtx from "../../../context/themectx";
 
 function BoardConfig() {
   const { theme } = useContext(ThemeCtx);
-  const { boards, showSidebar, toggleAddTaskModal } = useContext(BoardCtx);
+  const {
+    boards,
+    showBoardItemActions,
+    showSidebar,
+    toggleAddTaskModal,
+    toggleBoardItemActions,
+    toggleDeleteBoard,
+    toggleEditBoardModal,
+  } = useContext(BoardCtx);
 
   const paddingTransition = showSidebar ? classes["add-padding"] : "";
 
@@ -29,8 +38,28 @@ function BoardConfig() {
             <p>+ Add New Task</p>
           </button>
           <div>
-            <img src={ellipsis} alt="Ellipsis Icon" />
+            <img
+              src={ellipsis}
+              alt="Ellipsis Icon"
+              onClick={toggleBoardItemActions}
+            />
           </div>
+          {showBoardItemActions && (
+            <ItemActions
+              top={`90%`}
+              right={`0.5rem`}
+              deleteAction={() => {
+                toggleDeleteBoard();
+                toggleBoardItemActions();
+              }}
+              deleteText={"Delete Board"}
+              editText={"Edit Board"}
+              editAction={() => {
+                toggleEditBoardModal();
+                toggleBoardItemActions();
+              }}
+            />
+          )}
         </div>
       </div>
       <Sidebar />
