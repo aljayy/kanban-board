@@ -5,6 +5,7 @@ import data from "../data.json";
 const BoardCtx = React.createContext({
   addTask: () => {},
   boards: [],
+  deleteBoard: () => {},
   deleteTask: () => {},
   showAddTask: () => {},
   showEditBoard: Boolean,
@@ -221,6 +222,20 @@ export const BoardCtxProvider = ({ children }) => {
     toggleDeleteItemModal();
   }
 
+  function deleteBoard(id) {
+    let newBoards = boards
+      .filter((board) => {
+        if (board.id === id) return false;
+        return true;
+      })
+      .map((board, index) => {
+        if (index === 0) return { ...board, isActive: true };
+        else return { ...board };
+      });
+
+    setBoards(newBoards);
+  }
+
   function changeBoardDetails(newBoard) {
     setBoards((prevBoards) => {
       return prevBoards.map((board) => {
@@ -238,6 +253,7 @@ export const BoardCtxProvider = ({ children }) => {
         boards,
         changeTaskStatus,
         changeBoardDetails,
+        deleteBoard,
         deleteTask,
         showAddTask,
         showEditBoard,
