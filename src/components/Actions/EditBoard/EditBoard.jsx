@@ -53,6 +53,17 @@ function EditBoard() {
     });
   }
 
+  function removeColumn(i, columnId) {
+    console.log(columnId);
+    console.log(board);
+    setBoard((prevBoard) => {
+      return {
+        ...prevBoard,
+        columns: prevBoard.columns.filter((column) => column.id !== columnId),
+      };
+    });
+  }
+
   function saveChanges() {
     if (board.name.trim() === "") {
       setTitleError(true);
@@ -107,6 +118,7 @@ function EditBoard() {
               onChange: changeColumnTitle,
               action: "+ Add New Column",
               onAction: addColumn,
+              onDelete: removeColumn,
             }}
           />
         </div>
