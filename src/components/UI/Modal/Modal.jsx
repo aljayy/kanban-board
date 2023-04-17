@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import AddBoard from "../../Actions/AddBoard/AddBoard";
 import AddTask from "../../Actions/AddTask/AddTask";
 import EditBoard from "../../Actions/EditBoard/EditBoard";
 import EditTask from "../../Actions/EditTask/EditTask";
@@ -9,6 +10,7 @@ import ViewTask from "../../Actions/ViewTask/ViewTask";
 
 function Modal() {
   const {
+    showAddBoard,
     showAddTask,
     showEditBoard,
     showDeleteBoard,
@@ -19,6 +21,7 @@ function Modal() {
 
   return (
     <>
+      {showAddBoard && <AddBoard />}
       {showAddTask && <AddTask />}
       {showEditBoard && <EditBoard />}
       {showEditTask && <EditTask />}
