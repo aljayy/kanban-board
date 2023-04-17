@@ -7,13 +7,15 @@ const BoardCtx = React.createContext({
   boards: [],
   deleteBoard: () => {},
   deleteTask: () => {},
-  showAddTask: () => {},
+  showAddBoard: Boolean,
+  showAddTask: Boolean,
   showEditBoard: Boolean,
   showEditTask: Boolean,
   showItemActions: Boolean,
   showSidebar: Boolean,
   showTaskDetails: Boolean,
   changeTaskStatus: () => {},
+  toggleAddBoardModal: () => {},
   toggleActiveBoard: () => {},
   toggleAddTaskModal: () => {},
   toggleEditBoardModal: () => {},
@@ -36,6 +38,7 @@ const BoardCtx = React.createContext({
 
 export const BoardCtxProvider = ({ children }) => {
   const [boards, setBoards] = useState([]);
+  const [showAddBoard, setShowAddBoard] = useState(false);
   const [showAddTask, setShowAddTask] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showDeleteBoard, setShowDeleteBoard] = useState(false);
@@ -64,6 +67,10 @@ export const BoardCtxProvider = ({ children }) => {
 
     setBoards(boardWithIds);
   }, []);
+
+  function toggleAddBoardModal() {
+    setShowAddBoard(!showAddBoard);
+  }
 
   function toggleMobileMenu() {
     setViewMobileMenu((prev) => !prev);
@@ -249,6 +256,8 @@ export const BoardCtxProvider = ({ children }) => {
   return (
     <BoardCtx.Provider
       value={{
+        showAddBoard,
+        toggleAddBoardModal,
         addTask,
         boards,
         changeTaskStatus,
