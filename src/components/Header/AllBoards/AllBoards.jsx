@@ -7,7 +7,8 @@ import BoardCtx from "../../../context/boardctx";
 import ThemeCtx from "../../../context/themectx";
 
 function AllBoards() {
-  const { boards, toggleActiveBoard } = useContext(BoardCtx);
+  const { boards, toggleActiveBoard, toggleAddBoardModal } =
+    useContext(BoardCtx);
   const { theme } = useContext(ThemeCtx);
 
   if (boards.length < 1) return;
@@ -40,7 +41,7 @@ function AllBoards() {
         );
       })}
       <li className={`${classes["new-board"]} ${classes[theme]}`}>
-        <button>
+        <button onClick={toggleAddBoardModal}>
           <img src={newBoardIcon} alt="Board Icon" />
           <p>+ Create New Board</p>
         </button>
