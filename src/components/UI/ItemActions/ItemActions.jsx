@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import classes from "./ItemActions.module.scss";
-import BoardCtx from "../../../context/boardctx";
 import ThemeCtx from "../../../context/themectx";
 
 function ItemActions({
