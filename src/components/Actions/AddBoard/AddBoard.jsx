@@ -13,8 +13,17 @@ function AddBoard() {
     name: "",
     isActive: false,
     id: uuidv4(),
-    columns: [{ name: "Todo" }, { name: "Doing" }],
+    columns: [
+      { name: "Todo", id: uuidv4(), tasks: [] },
+      { name: "Doing", id: uuidv4(), tasks: [] },
+    ],
   });
+
+  function editBoardName(value) {
+    setNewBoard((prevBoard) => {
+      return { ...prevBoard, name: value };
+    });
+  }
 
   return (
     <OverlayPortal classes={classes["add-board-overlay"]}>
@@ -28,6 +37,7 @@ function AddBoard() {
               label: "Board Name",
               type: "text",
               placeholder: "e.g. Web Design",
+              onChange: editBoardName,
             }}
           />
         </div>
