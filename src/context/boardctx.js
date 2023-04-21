@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import data from "../data.json";
 
 const BoardCtx = React.createContext({
+  addNewBoard: () => {},
   addTask: () => {},
   boards: [],
   deleteBoard: () => {},
@@ -124,6 +125,14 @@ export const BoardCtxProvider = ({ children }) => {
 
   function toggleTaskDetailsModal() {
     setShowTaskDetails((prev) => !prev);
+  }
+
+  console.log(boards);
+
+  function addNewBoard(newBoard) {
+    setBoards((prevBoards) => {
+      return prevBoards.concat(newBoard);
+    });
   }
 
   function addTask(task, columnId) {
@@ -256,6 +265,7 @@ export const BoardCtxProvider = ({ children }) => {
   return (
     <BoardCtx.Provider
       value={{
+        addNewBoard,
         showAddBoard,
         toggleAddBoardModal,
         addTask,
