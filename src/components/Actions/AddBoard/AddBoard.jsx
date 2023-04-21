@@ -25,6 +25,18 @@ function AddBoard() {
     });
   }
 
+  function editColumnName(value, id) {
+    setNewBoard((prevBoard) => {
+      return {
+        ...prevBoard,
+        columns: prevBoard.columns.map((column) => {
+          if (column.id === id) return { ...column, name: value };
+          else return { ...column };
+        }),
+      };
+    });
+  }
+
   return (
     <OverlayPortal classes={classes["add-board-overlay"]}>
       <ModalWrapper>
@@ -48,6 +60,7 @@ function AddBoard() {
               tags: newBoard.columns,
               type: "text",
               action: "+Add New Column",
+              onChange: editColumnName,
             }}
           />
         </div>
