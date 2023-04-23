@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import classes from "./AddBoard.module.scss";
 import ActionInput from "../../UI/ActionInput";
@@ -7,8 +7,10 @@ import ActionTitle from "../../UI/ActionTitle";
 import OverlayPortal from "../../UI/OverlayPortal/OverlayPortal";
 import ModalWrapper from "../../UI/ModalWrapper/ModalWrapper";
 import SmallButtonPrimary from "../../UI/Buttons/SmallButtonPrimary";
+import BoardCtx from "../../../context/boardctx";
 
 function AddBoard() {
+  const { addNewBoard } = useContext(BoardCtx);
   const [newBoard, setNewBoard] = useState({
     name: "",
     isActive: false,
@@ -35,6 +37,10 @@ function AddBoard() {
         }),
       };
     });
+  }
+
+  function createNewBoard() {
+    addNewBoard(newBoard);
   }
 
   return (
@@ -64,7 +70,10 @@ function AddBoard() {
             }}
           />
         </div>
-        <SmallButtonPrimary text={"Create New Board"} />
+        <SmallButtonPrimary
+          text={"Create New Board"}
+          onClick={createNewBoard}
+        />
       </ModalWrapper>
     </OverlayPortal>
   );
