@@ -20,6 +20,7 @@ function AddBoard() {
       { name: "Doing", id: uuidv4(), tasks: [] },
     ],
   });
+  const [titleError, setTitleError] = useState(false);
 
   function editBoardName(value) {
     setNewBoard((prevBoard) => {
@@ -40,6 +41,27 @@ function AddBoard() {
   }
 
   function createNewBoard() {
+    if (newBoard.name.trim() === "") {
+      setTitleError(true);
+      return;
+    } else setTitleError(false);
+
+    let columnErrors = newBoard.columns.map((column) => {
+      if (column.name.trim() === "") {
+        return { ...column, hasError: true };
+      } else {
+        delete column.hasError;
+        return column;
+      }
+    });
+
+    if (columnErrors.some((column) => column.hasError)) {
+      setNewBoard((prevBoard) => {
+        return { ...prevBoard, columns: columnErrors };
+      });
+      return;
+    }
+
     addNewBoard(newBoard);
   }
 
@@ -56,6 +78,7 @@ function AddBoard() {
               type: "text",
               placeholder: "e.g. Web Design",
               onChange: editBoardName,
+              error: titleError,
             }}
           />
         </div>
