@@ -28,6 +28,19 @@ function AddBoard() {
     });
   }
 
+  function addColumn() {
+    setNewBoard((prevBoard) => {
+      return {
+        ...prevBoard,
+        columns: prevBoard.columns.concat({
+          name: "",
+          id: uuidv4(),
+          tasks: [],
+        }),
+      };
+    });
+  }
+
   function editColumnName(value, id) {
     setNewBoard((prevBoard) => {
       return {
@@ -89,6 +102,7 @@ function AddBoard() {
               tags: newBoard.columns,
               type: "text",
               action: "+Add New Column",
+              onAction: addColumn,
               onChange: editColumnName,
             }}
           />
